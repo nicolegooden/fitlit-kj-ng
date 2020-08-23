@@ -73,21 +73,21 @@ const allUserData = [
 
 describe('UserRepository', () => {
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(UserRepository).to.be.a('function');
   });
 
-  it.skip('should be an instance of UserRepository', () => {
+  it('should be an instance of UserRepository', () => {
     const userRepository = new UserRepository();
     expect(userRepository).to.be.an.instanceOf(UserRepository);
   });
 
-  it.skip('should take a single user\'s data as an argument', () => {
+  it('should take a single user\'s data as an argument', () => {
     const userRepository = new UserRepository(allUserData);
     expect(userRepository.allUserData).to.deep.equal(allUserData);
   });
 
-  it.skip('should be able to determine user data given ID', () => {
+  it('should be able to determine user data given ID', () => {
     const userRepository = new UserRepository(allUserData);
 
     userRepository.getUserData(3);
@@ -97,7 +97,7 @@ describe('UserRepository', () => {
     expect(userRepository.getUserData(5)).to.deep.equal(allUserData[4]);
   });
 
-  it.skip('should calculate the average step goal amongst all users', () => {
+  it('should calculate the average step goal amongst all users', () => {
     const userRepository = new UserRepository(allUserData);
 
     userRepository.calculateAverageSteps();
