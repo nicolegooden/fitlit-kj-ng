@@ -1,0 +1,86 @@
+.body {
+  font-family: Open Sans;
+  background: gray;
+}
+
+.body div {
+  border-radius: 7px;
+}
+
+.header {
+  background: white;
+  border: 3px blue solid;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.widgets {
+  display: flex;
+  justify-content: space-evenly;
+/*   height: 70%; */
+}
+
+.widgets div {
+  padding: 1%;
+  margin: 1%;
+  min-width: 30%;
+/*   height: 100%; */
+}
+
+.columns {
+height: 600px;
+}
+
+.left-column {
+  display: flex-column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.middle-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+/*   display: flex-rows; */
+/* align-items: stretch; */
+}
+
+.middle-column div{
+  min-width: 100%;
+  justify-content: space-between;
+/*   align-items: stretch; */
+}
+
+.right-column {
+  display: flex-column;
+  justify-content: space-between;
+}
+
+.user-card-widget {
+  background: white;
+  border: 3px purple solid;
+  height: 100%;
+}
+
+.hydration-widget {
+  background: white;
+  border: 3px lightBlue solid;
+  min-height: 45%;
+  width: 100%;
+}
+
+.sleep-widget {
+  background: white;
+  border: 3px red solid;
+  min-height: 45%;
+  width: 100%;
+}
+
+.activity-widget {
+  background: white;
+  border: 3px green solid;
+  height: 100%;
+}
