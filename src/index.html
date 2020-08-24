@@ -3,10 +3,63 @@
   <head>
     <meta charset="UTF-8">
     <title>Activity Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Open%20Sans" rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
-    <h1>Activity Tracker</h1>
-
+  <body class="body">
+    <header class= 'header'>
+     <div class='greeting'>Welcome, Name!</div>
+     <div class='date'>Date</div>
+    </header>
+    <section class='widgets'>
+      <div class='left-column columns'>
+        <div class='user-card-widget'>
+          <div class='user-card-title title'>User Card</div>
+          <div class='user-card-hydration'>
+            <h2 class="uc-hydration-title">Hydration</h2>
+            <div class="uc-hydration-data"></div>
+          </div>
+          <div class='user-card-sleep'>
+            <h2 class="uc-sleep-title">Sleep</h2>
+            <div class="uc-sleep-data"></div>
+          </div>
+          <div class='user-card-activity'>
+            <h2 class="uc-activity-title">Activity</h2>
+            <div class="uc-activity-data"></div>
+          </div>
+        </div>
+     </div>
+     <div class='middle-column columns'>
+       <div class='hydration-widget'>
+         <h2 class='my-hydration-title'>My Hydration</h2>
+         <h3 class='hydration-today'>Today</h3>
+         <div class='hydration-today-data'></div>
+         <h3 class="hydration-latest-week">Latest Week</h3>
+         <div class='hydration-latest-week-data'></div>
+       </div>
+       <div class='sleep-widget'>
+         <h2 class='my-sleep-title'>My Sleep</h2>
+         <h3 class='sleep-today'>Today</h3>
+         <div class='sleep-today-data'></div>
+         <h3 class="sleep-latest-week">Latest Week</h3>
+         <div class='sleep-latest-week-data'></div>
+         <h3 class="sleep-achievements-title">Achievements</h3>
+         <div class='sleep-achievements-data'></div>
+       </div>
+     </div>
+     <div class='right-column columns'>
+       <div class='activity-widget'>
+         <h2 class='my-activity-title'>My Activity</h2>
+         <h3 class='activity-today'>Today</h3>
+         <div class='activity-today-data'></div>
+         <h3 class='activity-latest-week'>Latest Week</h3>
+         <div class='activity-latest-week-data'></div>
+         <h3 class='you-vs-others-title'>You vs. Others</h3>
+         <div class='you-vs-others-data'></div>
+       </div>
+     </div>
+   </section>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
