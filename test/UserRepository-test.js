@@ -82,7 +82,7 @@ describe('UserRepository', () => {
     expect(userRepository).to.be.an.instanceOf(UserRepository);
   });
 
-  it('should take a single user\'s data as an argument', () => {
+  it('should take all user data as an argument', () => {
     const userRepository = new UserRepository(allUserData);
     expect(userRepository.allUserData).to.deep.equal(allUserData);
   });
