@@ -73,24 +73,25 @@ const allUserData = [
 
 describe('User', () => {
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(User).to.be.a('function');
   });
 
-  it.skip('should be an instance of User', () => {
-    const user = new User();
+  it('should be an instance of User', () => {
+    const userData = allUserData[0];
+    const user = new User(userData);
 
     expect(user).to.be.an.instanceOf(User);
   });
 
-  it.skip('should take user\'s data as an argument', () => {
+  it('should take user\'s data as an argument', () => {
     const userData = allUserData[1];
     const user = new User(userData);
 
     expect(user.userData).to.deep.equal(userData);
   });
 
-  it.skip('should hold on to the user properties from userData object', () => {
+  it('should hold on to the user properties from userData object', () => {
     const userData = allUserData[2];
     const user = new User(userData);
 
@@ -103,14 +104,12 @@ describe('User', () => {
     expect(user.friends).to.deep.equal(userData.friends);
   });
 
-  it.skip('should return user\'s first name', () => {
-    //will use split method to separate the first and last name
-    //return the first[0] index of that new array
+  it('should return user\'s first name', () => {
     const userData = allUserData[4];
     const user = new User(userData);
 
     user.getFirstName();
 
-    expect(user.getFirstName()).to.equal('Brigette')
+    expect(user.getFirstName()).to.equal('Brigette');
   });
 });
