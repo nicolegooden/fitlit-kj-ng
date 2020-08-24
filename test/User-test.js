@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const UserRepository = require('../src/UserRepository');
+const User = require('../src/User');
 
 const allUserData = [
   {
@@ -71,37 +71,46 @@ const allUserData = [
   }
 ];
 
-describe('UserRepository', () => {
+describe('User', () => {
 
-  it('should be a function', () => {
-    expect(UserRepository).to.be.a('function');
+  it.skip('should be a function', () => {
+    expect(User).to.be.a('function');
   });
 
-  it('should be an instance of UserRepository', () => {
-    const userRepository = new UserRepository();
-    expect(userRepository).to.be.an.instanceOf(UserRepository);
+  it.skip('should be an instance of User', () => {
+    const user = new User();
+
+    expect(user).to.be.an.instanceOf(User);
   });
 
-  it('should take all user data as an argument', () => {
-    const userRepository = new UserRepository(allUserData);
-    expect(userRepository.allUserData).to.deep.equal(allUserData);
+  it.skip('should take user\'s data as an argument', () => {
+    const userData = allUserData[1];
+    const user = new User(userData);
+
+    expect(user.userData).to.deep.equal(userData);
   });
 
-  it('should be able to determine user data given ID', () => {
-    const userRepository = new UserRepository(allUserData);
+  it.skip('should hold on to the user properties from userData object', () => {
+    const userData = allUserData[2];
+    const user = new User(userData);
 
-    userRepository.getUserData(3);
-    expect(userRepository.getUserData(3)).to.deep.equal(allUserData[2]);
-
-    userRepository.getUserData(5);
-    expect(userRepository.getUserData(5)).to.deep.equal(allUserData[4]);
+    expect(user.id).to.equal(userData.id);
+    expect(user.name).to.equal(userData.name);
+    expect(user.address).to.equal(userData.address);
+    expect(user.email).to.equal(userData.email);
+    expect(user.strideLength).to.equal(userData.strideLength);
+    expect(user.dailyStepGoal).to.equal(userData.dailyStepGoal);
+    expect(user.friends).to.deep.equal(userData.friends);
   });
 
-  it('should calculate the average step goal amongst all users', () => {
-    const userRepository = new UserRepository(allUserData);
+  it.skip('should return user\'s first name', () => {
+    //will use split method to separate the first and last name
+    //return the first[0] index of that new array
+    const userData = allUserData[4];
+    const user = new User(userData);
 
-    userRepository.calculateAverageSteps();
+    user.getFirstName();
 
-    expect(userRepository.calculateAverageSteps()).to.equal(7800);
+    expect(user.getFirstName()).to.equal('Brigette')
   });
 });
