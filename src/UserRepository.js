@@ -4,10 +4,10 @@ class UserRepository {
   }
 
   getUserData(id) {
-    const matchingID = this.allUserData.find(data => {
+    const matchingUser = this.allUserData.find(data => {
       return data.id === id;
     });
-    return matchingID;
+    return matchingUser;
   }
 
   calculateAverageSteps() {
@@ -34,4 +34,6 @@ class UserRepository {
   }
 };
 
-module.exports = UserRepository;
+if (typeof module !== 'undefined') {
+  module.exports = UserRepository;
+}
