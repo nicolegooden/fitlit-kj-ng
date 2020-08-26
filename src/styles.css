@@ -62,8 +62,8 @@ height: 600px;
 
 .user-card-widget {
   display: flex-columns;
-  background: #feceff;
-  border: 3px #800080 solid;
+  background: #fdfce0;
+  border: 3px #e6dc0d solid;
   height: 100%;
 }
 
@@ -73,7 +73,7 @@ height: 600px;
 
 .uc-module {
   justify-content: space-between;
-  background-color: #be38be;
+  background-color: #c1b80b;
 }
 
 .uc-title {
@@ -82,7 +82,7 @@ height: 600px;
 }
 
 .uc-data {
-  border-top: 1px solid #800080;
+  border-top: 1px solid #e6dc0d;
   margin: 0%;
   font-size: 15px;
   flex-grow: 1;
@@ -92,7 +92,7 @@ height: 600px;
 
 .hydration-widget {
   background: #cadbfb;
-  border: 3px #092c6f solid;
+  border: 3px #0c3a93 solid;
   min-height: 45%;
   width: 100%;
 }
@@ -107,20 +107,34 @@ height: 600px;
 }
 
 .hydration-data {
-  border-top: 1px solid #092c6f;
+  border-top: 1px solid #0c3a93;
   font-size: 15px;
   margin: 0%;
 }
 
 .sleep-widget {
-  background: white;
-  border: 3px red solid;
+  background: #fdc4bb;
+  border: 3px #dc2205 solid;
   min-height: 45%;
   width: 100%;
 }
 
+.sleep-module {
+  background: #fb6048;
+}
+
+.sleep-title {
+  margin: 0%;
+  font-size: 18px;
+}
+.sleep-data {
+  border-top: 1px solid #dc2205;
+  font-size: 15px;
+  margin: 0%;
+}
+
 .activity-widget {
-  background: #e6fde7;
+  background: #d4fcd4;
   border: 3px #077b09 solid;
   height: 100%;
 }
