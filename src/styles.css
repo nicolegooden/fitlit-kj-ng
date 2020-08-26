@@ -73,7 +73,7 @@ height: 600px;
 
 .uc-module {
   justify-content: space-between;
-  background-color: #ff80ff;
+  background-color: #be38be;
 }
 
 .uc-title {
@@ -84,7 +84,7 @@ height: 600px;
 .uc-data {
   border-top: 1px solid #800080;
   margin: 0%;
-  font-size: 14px;
+  font-size: 15px;
   flex-grow: 1;
   flex-wrap: wrap;
 }
@@ -104,11 +104,12 @@ height: 600px;
 .hydration-title {
   margin: 0%;
   font-size: 18px;
-
 }
 
 .hydration-data {
   border-top: 1px solid #092c6f;
+  font-size: 15px;
+  margin: 0%;
 }
 
 .sleep-widget {
@@ -119,7 +120,22 @@ height: 600px;
 }
 
 .activity-widget {
-  background: white;
-  border: 3px green solid;
+  background: #e6fde7;
+  border: 3px #077b09 solid;
   height: 100%;
+}
+
+.activity-module {
+  background: #0cc50f;
+}
+
+.activity-title {
+  margin: 0%;
+  font-size: 18px;
+}
+
+.activity-data {
+  border-top: 1px #077b09 solid;
+  font-size: 15px;
+  margin: 0%;
 }
