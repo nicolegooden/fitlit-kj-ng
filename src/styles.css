@@ -48,7 +48,6 @@ height: 600px;
 }
 
 .middle-column div{
-  min-width: 100%;
   justify-content: space-between;
 /*   align-items: stretch; */
 }
@@ -83,6 +82,7 @@ height: 600px;
 }
 
 .uc-data {
+  border-top: 1px solid #800080;
   margin: 0%;
   font-size: 14px;
   flex-grow: 1;
@@ -91,10 +91,24 @@ height: 600px;
 
 
 .hydration-widget {
-  background: white;
-  border: 3px lightBlue solid;
+  background: #cadbfb;
+  border: 3px #092c6f solid;
   min-height: 45%;
   width: 100%;
+}
+
+.hydration-module {
+  background: #82a9f5;
+}
+
+.hydration-title {
+  margin: 0%;
+  font-size: 18px;
+
+}
+
+.hydration-data {
+  border-top: 1px solid #092c6f;
 }
 
 .sleep-widget {
