@@ -36,7 +36,6 @@ height: 600px;
 
 .left-column {
   display: flex-column;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -55,15 +54,41 @@ height: 600px;
 }
 
 .right-column {
-  display: flex-column;
   justify-content: space-between;
 }
 
+.title {
+  text-align: center;
+}
+
 .user-card-widget {
-  background: white;
-  border: 3px purple solid;
+  display: flex-columns;
+  background: #feceff;
+  border: 3px #800080 solid;
   height: 100%;
 }
+
+.user-card-widget div {
+  justify-content: space-between;
+}
+
+.uc-module {
+  justify-content: space-between;
+  background-color: #ff80ff;
+}
+
+.uc-title {
+  margin: 0%;
+  font-size: 18px;
+}
+
+.uc-data {
+  margin: 0%;
+  font-size: 14px;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
 
 .hydration-widget {
   background: white;
