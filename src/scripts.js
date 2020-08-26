@@ -50,11 +50,11 @@ function createUser() {
 };
 
 function showUserCardData() {
-  userCardID.innerText = `ID: ${user.id}`;
-  userCardName.innerText = `Name: ${user.name}`;
-  userCardAddress.innerText = `Address: ${user.address}`;
-  userCardEmail.innerText = `Email: ${user.email}`;
-  userCardStrideLength.innerText = `Stride Length: ${user.strideLength}`;
-  userCardDailyStepGoal.innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
-  userCardFriends.innerText = `Friends: ${user.friends}`;
+  userCardID.innerText = `${user.id}`;
+  userCardName.innerText = `${user.name}`;
+  userCardAddress.innerText = `${user.address}`;
+  userCardEmail.innerText = `${user.email}`;
+  userCardStrideLength.innerText = `${user.strideLength}`;
+  userCardDailyStepGoal.innerText = `${user.dailyStepGoal}`;
+  userCardFriends.innerText = `${user.friends}`;
 };
