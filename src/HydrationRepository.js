@@ -47,17 +47,20 @@ class HydrationRepository {
     let myDate = moment(date).add(1, 'd');
     let olderDate = myDate.clone().subtract(8, 'd');
     let userData = this.getUserHydrationData(id);
-    let verifiedDates = userData.filter(dataPoint => {
+    return userData.filter(dataPoint => {
       return moment(dataPoint.date).isBetween(olderDate, myDate);
     })
-    let ouncesByWeek = verifiedDates.map(dataPoint => {
+  }
+
+  organizeOuncesForWeek(id, date) {
+    let ouncesByWeek = this.findOuncesForWeek(id, date);
+    return ouncesByWeek.map(dataPoint => {
       let ouncesByDate = {
         date: dataPoint.date,
         ounces: dataPoint.numOunces
-      };
+      }
       return ouncesByDate;
-    });
-    return ouncesByWeek;
+    })
   }
 }
 
