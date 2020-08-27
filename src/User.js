@@ -14,8 +14,8 @@ class User {
     const allUserNames = this.name.split(' ');
     return allUserNames[0];
   }
-};
+}
 
 if (typeof module !== 'undefined') {
   module.exports = User;
-};
+}
