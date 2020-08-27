@@ -1,3 +1,5 @@
+let moment = require('moment');
+
 class HydrationRepository {
   constructor(hydrationData) {
     this.hydrationData = hydrationData;
@@ -32,6 +34,31 @@ class HydrationRepository {
     })
     return sumOfOunces;
   }
-};
+
+  getUserOuncesByDate(id, date) {
+    let userData = this.getUserHydrationData(id);
+    let dataByDate = userData.find(dataPoint => {
+      return dataPoint.date === date;
+    })
+    return dataByDate.numOunces;
+  }
+
+  findOuncesForWeek(id, date) {
+    let myDate = moment(date).add(1, 'd');
+    let olderDate = myDate.clone().subtract(8, 'd');
+    let userData = this.getUserHydrationData(id);
+    let verifiedDates = userData.filter(dataPoint => {
+      return moment(dataPoint.date).isBetween(olderDate, myDate);
+    })
+    let ouncesByWeek = verifiedDates.map(dataPoint => {
+      let ouncesByDate = {
+        date: dataPoint.date,
+        ounces: dataPoint.numOunces
+      };
+      return ouncesByDate;
+    });
+    return ouncesByWeek;
+  }
+}
 
 module.exports = HydrationRepository;
