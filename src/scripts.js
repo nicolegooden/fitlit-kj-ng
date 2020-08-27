@@ -3,7 +3,7 @@
 let greeting = document.querySelector('.greeting');
 let stepGoalComparison = document.querySelector('.you-vs-others-data');
 let userCardID = document.querySelector('.user-card-id');
-let userCardName= document.querySelector('.user-card-name');
+let userCardName = document.querySelector('.user-card-name');
 let userCardAddress = document.querySelector('.user-card-address');
 let userCardEmail = document.querySelector('.user-card-email');
 let userCardStrideLength = document.querySelector('.user-card-stride-length');
