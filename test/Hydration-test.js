@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-let moment = require('moment');
 
 const HydrationRepository = require('../src/HydrationRepository');
 
@@ -212,9 +211,9 @@ describe('Hydration Repository', () => {
       { date: '2019/06/21', ounces: 50 }
     ];
 
-    hydrationRepository.findOuncesForWeek(1, "2019/06/21");
+    hydrationRepository.organizeOuncesForWeek(1, "2019/06/21");
 
-    expect(hydrationRepository.findOuncesForWeek(1, "2019/06/21")).to.deep.equal(ouncesByDate);
-    expect(hydrationRepository.findOuncesForWeek(1, "2019/06/21").length).to.equal(7);
+    expect(hydrationRepository.organizeOuncesForWeek(1, "2019/06/21")).to.deep.equal(ouncesByDate);
+    expect(hydrationRepository.organizeOuncesForWeek(1, "2019/06/21").length).to.equal(7);
   });
 });
