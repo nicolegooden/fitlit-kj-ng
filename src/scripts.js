@@ -2,10 +2,8 @@
 
 let greeting = document.querySelector('.greeting');
 let stepGoalComparison = document.querySelector('.you-vs-others-data');
-
-
 let userCardID = document.querySelector('.user-card-id');
-let userCardName= document.querySelector('.user-card-name');
+let userCardName = document.querySelector('.user-card-name');
 let userCardAddress = document.querySelector('.user-card-address');
 let userCardEmail = document.querySelector('.user-card-email');
 let userCardStrideLength = document.querySelector('.user-card-stride-length');
@@ -18,10 +16,12 @@ let user = createUser();
 
 ///// event listeners /////
 
-window.addEventListener('load', compareStepGoals);
-window.addEventListener('load', createUser);
-window.addEventListener('load', welcomeUser);
-window.addEventListener('load', showUserCardData);
+window.addEventListener('load', function actOnLoad() {
+  createUser();
+  welcomeUser();
+  showUserCardData();
+  compareStepGoals();
+});
 
 ///// event handlers /////
 

@@ -1,9 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const Hydration = require('../src/Hydration');
-const UserRepository = require('../src/UserRepository');
-const User = require('../src/User');
+const HydrationRepository = require('../src/HydrationRepository');
 
 const hydrationData = [
   {
@@ -110,63 +108,112 @@ const hydrationData = [
     "userID": 3,
     "date": "2019/06/21",
     "numOunces": 41
+  },
+  {
+    "userID": 1,
+    "date": "2019/06/22",
+    "numOunces": 43
+  },
+  {
+    "userID": 2,
+    "date": "2019/06/22",
+    "numOunces": 58
+  },
+  {
+    "userID": 3,
+    "date": "2019/06/22",
+    "numOunces": 78
+  },
+  {
+    "userID": 1,
+    "date": "2019/06/23",
+    "numOunces": 39
+  },
+  {
+    "userID": 2,
+    "date": "2019/06/23",
+    "numOunces": 44
+  },
+  {
+    "userID": 3,
+    "date": "2019/06/23",
+    "numOunces": 35
   }
 ]
 
-describe('Hydration', () => {
+describe('Hydration Repository', () => {
 
-  let hydration;
-  let userID;
-  let specificUserDate;
+  // let hydration;
+  // let userID;
+  // let specificUserDate;
+  //
+  // beforeEach(() => {
+  //   userID = hydrationData[0].userID;
+  //   hydrationRepository= new Hydration(userID);
+  //   specificUserDate = hydrationData[0].date;
+  // });
 
-  beforeEach(() => {
-    userID = hydrationData[0].userID;
-    hydration = new Hydration(userID);
-    specificUserDate = hydrationData[0].date;
+  it('should be a function', () => {
+    expect(HydrationRepository).to.be.a('function');
   });
 
-  it.skip('should be a function', () => {
-    expect(Hydration).to.be.a('function');
+  it('should be an instance of HydrationRepository', () => {
+    let hydrationRepository = new HydrationRepository();
+
+    expect(hydrationRepository).to.be.an.instanceOf(HydrationRepository);
   });
 
-  it.skip('should be an instance of Hydration', () => {
+  it('should take all users\'s hydration data as an argument', () => {
+    let hydrationRepository = new HydrationRepository(hydrationData);
 
-    expect(hydration).to.be.an.instanceOf(Hydration)
+    expect(hydrationRepository.hydrationData).to.deep.equal(hydrationData);
   });
 
-  it.skip('should take in userID as an argument', () => {
+  it('should be able to find all of a user\'s data based on ID', () => {
+    let hydrationRepository = new HydrationRepository(hydrationData);
 
-    expect(hydration.userID).to.equal(1);
+    hydrationRepository.getUserHydrationData(3);
+
+    let userData = hydrationData.filter(dataPoint => {
+      return dataPoint.userID === 3;
+    });
+
+    expect(hydrationRepository.getUserHydrationData(3)).to.deep.equal(userData);
   });
 
-  it.skip('should calculate the average fluid ounces consumed per day for all time', () => {
-    hydration.calculateAverageOunces();
+  it('should calculate the average fluid ounces consumed per day for all time', () => {
+    let hydrationRepository = new HydrationRepository(hydrationData);
 
-    expect(hydration.calculateAverageOunces()).to.equal(64)
-    //454 divided by 7 = 64.85
-    //use Math.floor
+    hydrationRepository.calculateAverageOunces(1);
+
+    expect(hydrationRepository.calculateAverageOunces(1)).to.equal(59);
   });
 
-  it.skip('should identify a specific date', () => {
-    hydration.getUserOuncesByDate(specificUserDate);
+  it('should determine how many fluid ounces they consumed for a specific day', () => {
+    let hydrationRepository= new HydrationRepository(hydrationData);
+    let specificUserDate = hydrationData[0].date;
 
-    expect(specificUserDate).to.equal("2019/06/15");
+    hydrationRepository.getUserOuncesByDate(1, specificUserDate);
+
+    expect(hydrationRepository.getUserOuncesByDate(1, specificUserDate)).to.equal(37);
   });
 
-  it.skip('should determine how many fluid ounces they consumed for a specific day', () => {
-    hydration.getUserOuncesByDate(specificUserDate);
+  it('should determine how many fluid ounces of water are consumed each day over the course of a week', () => {
+    let hydrationRepository= new HydrationRepository(hydrationData);
 
-    expect(hydration.getUserOuncesByDate(specificUserDate)).to.equal(37);
-  });
+    let ouncesByDate = [
+      { date: '2019/06/15', ounces: 37 },
+      { date: '2019/06/16', ounces: 69 },
+      { date: '2019/06/17', ounces: 96 },
+      { date: '2019/06/18', ounces: 61 },
+      { date: '2019/06/19', ounces: 91 },
+      { date: '2019/06/20', ounces: 50 },
+      { date: '2019/06/21', ounces: 50 }
+    ];
 
-  it.skip('should determine how many fluid ounces of water are consumed each day over the course of a week', () => {
+    hydrationRepository.organizeOuncesForWeek(1, "2019/06/21");
 
-    hydration.findOuncesForWeek();
-
-    expect(hydration.today).to.equal("2019/06/21");
-    expect(hydration.lastSevenDays).to.deep.equal(["2019/06/21", "2019/06/20", "2019/06/19", "2019/06/18", "2019/06/17", "2019/06/16", "2019/06/15"]);
-    expect(hydration.lastSevenDays.length).to.equal(7);
-    expect(hydration.findOuncesForWeek()).to.deep.equal([50, 50, 91, 61, 96, 69, 37]);
-    expect(hydration.findOuncesForWeek().length).to.equal(7);
+    expect(hydrationRepository.organizeOuncesForWeek(1, "2019/06/21")).to.deep.equal(ouncesByDate);
+    expect(hydrationRepository.organizeOuncesForWeek(1, "2019/06/21").length).to.equal(7);
   });
 });

@@ -29,11 +29,11 @@ class UserRepository {
     const allStepGoals = userStepGoals.reduce((sum, userStepGoal) => {
       sum += userStepGoal;
       return sum;
-    });
+    })
     return allStepGoals;
   }
-};
+}
 
 if (typeof module !== 'undefined') {
   module.exports = UserRepository;
-};
+}
