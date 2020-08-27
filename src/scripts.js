@@ -9,10 +9,15 @@ let userCardEmail = document.querySelector('.user-card-email');
 let userCardStrideLength = document.querySelector('.user-card-stride-length');
 let userCardDailyStepGoal = document.querySelector('.user-card-daily-step-goal');
 let userCardFriends = document.querySelector('.user-card-friends');
-
+let hydrationDataToday = document.querySelector('.hydration-today-data');
+let hydrationDataLatestWeek = document.querySelector('.hydration-latest-week-data')
+let dateInput = document.querySelector('.date-input');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
+let userID = user.id;
+let today = '2019/09/22'
+//determineToday();
 
 ///// event listeners /////
 
@@ -22,6 +27,8 @@ window.addEventListener('load', function actOnLoad() {
   showUserCardData();
   compareStepGoals();
 });
+
+dateInput.addEventListener('keyup', determineToday)
 
 ///// event handlers /////
 
@@ -57,4 +64,25 @@ function showUserCardData() {
   userCardStrideLength.innerText = `${user.strideLength}`;
   userCardDailyStepGoal.innerText = `${user.dailyStepGoal}`;
   userCardFriends.innerText = `${user.friends}`;
+};
+
+function showHydrationData() {
+  let hydrationRepository = new HydrationRepository(hydrationData);
+  //let ouncesToday = hydrationRepository.getUserOuncesByDate(userID, );
+  //hydrationDataToday.innerText =
+  //hydrationDataLatestWeek.innerText =
+};
+
+function determineToday() {
+  if (dateInput.value.length === 10 && dateInput.value.indexOf('/') === 4) {
+    today = dateInput.value;
+    return today;
+  } else {
+    let allDates = hydrationData.map(dataPoint => {
+      return dataPoint.date
+    })
+    let mostRecentDay = allDates.length - 1;
+    today = mostRecentDay;
+    return today;
+  }
 };
