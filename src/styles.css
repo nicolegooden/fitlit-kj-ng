@@ -1,6 +1,6 @@
 .body {
   font-family: Open Sans;
-  background: gray;
+  background: #2b2b2b;
 }
 
 .body div {
@@ -8,13 +8,22 @@
 }
 
 .header {
-  background: white;
-  border: 3px blue solid;
-  margin: 1%;
+  background: #fad0af;
+  border: 3px #eb6d0e solid;
+  margin: 0%;
   padding: 1%;
   border-radius: 7px;
   display: flex;
   justify-content: space-between;
+  font-size: 20px;
+}
+
+.greeting {
+  margin: 0%;
+}
+
+.date {
+  margin: 0%;
 }
 
 .widgets {
@@ -24,7 +33,7 @@
 }
 
 .widgets div {
-  padding: 1%;
+  /* padding: 1%; */
   margin: 1%;
   min-width: 30%;
 /*   height: 100%; */
@@ -36,7 +45,6 @@ height: 600px;
 
 .left-column {
   display: flex-column;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -49,38 +57,122 @@ height: 600px;
 }
 
 .middle-column div{
-  min-width: 100%;
   justify-content: space-between;
 /*   align-items: stretch; */
 }
 
 .right-column {
-  display: flex-column;
   justify-content: space-between;
 }
 
+.title {
+  text-align: center;
+}
+
 .user-card-widget {
-  background: white;
-  border: 3px purple solid;
+  display: flex-columns;
+  background: #fdfce0;
+  border: 3px #f2e814 solid;
   height: 100%;
 }
 
+.user-card-widget div {
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.uc-module {
+  justify-content: space-between;
+  background-color: #c1b80b;
+}
+
+.uc-title {
+  margin: 0%;
+  font-size: 18px;
+}
+
+.uc-data {
+  border-top: 1px solid #f2e814;
+  margin: 0%;
+  font-size: 15px;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+
 .hydration-widget {
-  background: white;
-  border: 3px lightBlue solid;
+  background: #cadbfb;
+  border: 3px #155fec solid;
   min-height: 45%;
   width: 100%;
+  padding-bottom: 1%;
+}
+
+.hydration-widget div {
+  padding: 2%;
+}
+
+.hydration-module {
+  background: #82a9f5;
+}
+
+.hydration-title {
+  margin: 0%;
+  font-size: 18px;
+}
+
+.hydration-data {
+  border-top: 1px solid #155fec;
+  font-size: 15px;
+  margin: 0%;
 }
 
 .sleep-widget {
-  background: white;
-  border: 3px red solid;
+  background: #fdc4bb;
+  border: 3px #dc2205 solid;
   min-height: 45%;
   width: 100%;
 }
 
+.sleep-widget div {
+  padding: 2%;
+}
+
+.sleep-module {
+  background: #fb6048;
+}
+
+.sleep-title {
+  margin: 0%;
+  font-size: 18px;
+}
+.sleep-data {
+  border-top: 1px solid #dc2205;
+  font-size: 15px;
+  margin: 0%;
+}
+
 .activity-widget {
-  background: white;
-  border: 3px green solid;
+  background: #d4fcd4;
+  border: 3px #077b09 solid;
   height: 100%;
+}
+
+.activity-widget div {
+  padding: 2%;
+}
+
+.activity-module {
+  background: #0cc50f;
+}
+
+.activity-title {
+  margin: 0%;
+  font-size: 18px;
+}
+
+.activity-data {
+  border-top: 1px #077b09 solid;
+  font-size: 15px;
+  margin: 0%;
 }
