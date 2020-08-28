@@ -31,6 +31,8 @@ window.addEventListener('load', function actOnLoad() {
   showHydrationData();
 });
 
+dateInput.addEventListener('change', showHydrationData);
+
 // dateInput.addEventListener('keyup', determineToday)
 
 ///// event handlers /////
