@@ -4,13 +4,14 @@
     <meta charset='UTF-8'>
     <title>Activity Tracker</title>
     <link href='https://fonts.googleapis.com/css?family=Open%20Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://momentjs.com/downloads/moment.js">
     <link rel='stylesheet' type='text/css' href='./styles.css'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
   </head>
   <body class='body'>
     <header class= 'header'>
      <h2 class='greeting'>Welcome, Name!</h2>
-     <div class='date'>Date: <input class='date-input' placeholder='2019/09/22' ></input></div>
+     <div class='date'>Date: <input class='date-input' type='date' value='2019-09-22' min='2019-06-15' max='2019-09-22'></input></div>
     </header>
     <section class='widgets'>
       <div class='left-column columns'>
@@ -92,12 +93,13 @@
        </div>
      </div>
    </section>
+    <script src='../node_modules/moment/moment.js'></script>
     <script type='text/javascript' src='../data/users.js'></script>
     <script type='text/javascript' src='../data/hydration.js'></script>
     <script type='text/javascript' src='../data/sleep.js'></script>
     <script type='text/javascript' src='../data/activity.js'></script>
-    <script type='text/javascript' src='./UserRepository.js' ></script>
-    <script type='text/javascript' src='../data/HydrationRepository.js'></script>
+    <script type='text/javascript' src='./UserRepository.js'></script>
+    <script type='text/javascript' src='./HydrationRepository.js'></script>
     <script type='text/javascript' src='./User.js'></script>
     <script type='text/javascript' src='./scripts.js'></script>
   </body>

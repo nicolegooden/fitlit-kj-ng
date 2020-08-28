@@ -1,5 +1,3 @@
-let moment = require('moment');
-
 class HydrationRepository {
   constructor(hydrationData) {
     this.hydrationData = hydrationData;
@@ -44,6 +42,7 @@ class HydrationRepository {
   }
 
   findOuncesForWeek(id, date) {
+    let moment = require('moment');
     let myDate = moment(date).add(1, 'd');
     let olderDate = myDate.clone().subtract(8, 'd');
     let userData = this.getUserHydrationData(id);
@@ -64,4 +63,6 @@ class HydrationRepository {
   }
 }
 
-module.exports = HydrationRepository;
+if (typeof module !== 'undefined') {
+  module.exports = HydrationRepository;
+}
