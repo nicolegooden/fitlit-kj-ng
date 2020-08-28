@@ -24,6 +24,11 @@
 
 .date {
   margin: 0%;
+  margin-right: 7%;
+}
+
+.date-input {
+  font-size: 12px;
 }
 
 .widgets {
