@@ -74,7 +74,7 @@ function showHydrationData() {
   hydrationDataToday.innerText = `${ouncesToday} ounces consumed`;
   let ouncesLatestWeek = hydrationRepository.organizeOuncesForWeek(userID, getDate());
   ouncesLatestWeek.forEach(day => {
-    hydrationDataLatestWeek.innerText += `${day.date}: ${day.ounces}\n`;
+    hydrationDataLatestWeek.innerText += `${day.date}: ${day.ounces} oz.\n`;
   })
 };
 
