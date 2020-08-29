@@ -17,8 +17,6 @@ let dateControl = document.querySelector('input[type="date"]');
 let userRepository = new UserRepository(userData);
 let user = createUser();
 let userID = user.id;
-// let today = '2019/09/22'
-//determineToday();
 
 ///// event listeners /////
 
@@ -32,8 +30,7 @@ window.addEventListener('load', function actOnLoad() {
 });
 
 dateInput.addEventListener('change', showHydrationData);
-
-// dateInput.addEventListener('keyup', determineToday)
+dateInput.addEventListener('change', resetHydrationData);
 
 ///// event handlers /////
 
@@ -76,7 +73,9 @@ function showHydrationData() {
   let ouncesToday = hydrationRepository.getUserOuncesByDate(userID, getDate());
   hydrationDataToday.innerText = `${ouncesToday} ounces consumed`;
   let ouncesLatestWeek = hydrationRepository.organizeOuncesForWeek(userID, getDate());
-  hydrationDataLatestWeek.innerText = `${ouncesLatestWeek} ounces consumed`;
+  ouncesLatestWeek.forEach(day => {
+    hydrationDataLatestWeek.innerText += `${day.date}: ${day.ounces}\n`;
+  })
 };
 
 function getDate() {
@@ -84,3 +83,8 @@ function getDate() {
   let myDate = dateControl.value.replace(regex, '/');
   return myDate;
 };
+
+function resetHydrationData() {
+  hydrationDataLatestWeek.innerText = '';
+  showHydrationData();
+}
