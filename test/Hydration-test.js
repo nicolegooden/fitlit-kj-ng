@@ -210,7 +210,7 @@ describe('Hydration Repository', () => {
       { date: '2019/06/20', ounces: 50 },
       { date: '2019/06/21', ounces: 50 }
     ];
-
+    hydrationRepository.findOuncesForWeek(1, "2019/06/21")
     hydrationRepository.organizeOuncesForWeek(1, "2019/06/21");
 
     expect(hydrationRepository.organizeOuncesForWeek(1, "2019/06/21")).to.deep.equal(ouncesByDate);
