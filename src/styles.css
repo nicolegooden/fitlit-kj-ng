@@ -132,6 +132,11 @@ height: 600px;
   margin: 0%;
 }
 
+table, td, th {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
 .sleep-widget {
   background: #fdc4bb;
   border: 3px #dc2205 solid;

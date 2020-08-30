@@ -42,13 +42,16 @@ class HydrationRepository {
   }
 
   findOuncesForWeek(id, date) {
-    let moment = require('moment');
-    let myDate = moment(date).add(1, 'd');
-    let olderDate = myDate.clone().subtract(8, 'd');
-    let userData = this.getUserHydrationData(id);
-    return userData.filter(dataPoint => {
-      return moment(dataPoint.date).isBetween(olderDate, myDate);
+    let ouncesData = this.getUserHydrationData(id);
+    let ouncesDataDates = ouncesData.map(dataPoint => {
+      return dataPoint.date;
     })
+    let dateIndex = ouncesDataDates.indexOf(date);
+    let datesForWeek = ouncesDataDates.slice(dateIndex - 6,dateIndex+1);
+    let filteredData = ouncesData.filter(dataPoint => {
+      return datesForWeek.includes(dataPoint.date);
+    })
+    return filteredData;
   }
 
   organizeOuncesForWeek(id, date) {
