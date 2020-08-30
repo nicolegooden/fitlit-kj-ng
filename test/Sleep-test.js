@@ -170,23 +170,23 @@ const sleepData = [
 
 describe('Sleep Repository', () => {
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(SleepRepository).to.be.a('function');
   });
 
-  it.skip('should be an instance of SleepRepository', () => {
+  it('should be an instance of SleepRepository', () => {
     let sleepRepository = new SleepRepository();
 
     expect(sleepRepository).to.be.an.instanceOf(SleepRepository);
   });
 
-  it.skip('should take all users\'s sleep data as an argument', () => {
+  it('should take all users\'s sleep data as an argument', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
     expect(sleepRepository.sleepData).to.deep.equal(sleepData);
   });
 
-  it.skip('should be able to find all of a user\'s data based on ID', () => {
+  it('should be able to find all of a user\'s data based on ID', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
     sleepRepository.getUserSleepData(5);
@@ -198,36 +198,36 @@ describe('Sleep Repository', () => {
     expect(sleepRepository.getUserSleepData(5)).to.deep.equal(userData);
   });
 
-  it.skip('should calculate the average hours slept per day for a single user', () => {
+  it('should calculate the average hours slept per day for a single user', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.calculateAverageDailySleep(5);
+    sleepRepository.calculateAverageHoursOrQuality(5, 'hoursSlept');
 
-    expect(sleepRepository.calculateAverageDailySleep(5)).to.equal(7);
+    expect(sleepRepository.calculateAverageHoursOrQuality(5, 'hoursSlept')).to.equal(7.2);
   });
 
-  it.skip('should calculate the average sleep quality per day over all time, for a single user', () => {
+  it('should calculate the average sleep quality per day over all time, for a single user', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.calculateAverageSleepQuality(5);
+    sleepRepository.calculateAverageHoursOrQuality(5, 'sleepQuality');
 
-    expect(sleepRepository.calculateAverageSleepQuality(5)).to.equal(3);
+    expect(sleepRepository.calculateAverageHoursOrQuality(5, 'sleepQuality')).to.equal(3.1);
   });
 
-  it.skip('should determine hours slept for a specific day, for a single user', () => {
+  it('should determine hours slept for a specific day, for a single user', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.getHoursSleptByDate(5, '2019/06/17');
+    sleepRepository.getHoursOrQualityByDate(5, '2019/06/17', 'hoursSlept');
 
-    expect(sleepRepository.getHoursSleptByDate(5, '2019/06/17')).to.equal(10.5);
+    expect(sleepRepository.getHoursOrQualityByDate(5, '2019/06/17', 'hoursSlept')).to.equal(10.5);
   });
 
-  it.skip('should determine sleep quality for a specific day, for a single user', () => {
+  it('should determine sleep quality for a specific day, for a single user', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.getUserSleepQualityByDate(5, '2019/06/16');
+    sleepRepository.getHoursOrQualityByDate(5, '2019/06/16', 'sleepQuality');
 
-    expect(sleepRepository.getUserSleepQualityByDate(5, '2019/06/16')).to.equal(2.4);
+    expect(sleepRepository.getHoursOrQualityByDate(5, '2019/06/16', 'sleepQuality')).to.equal(2.4);
   });
 
   it.skip('should determine hours slept per day over a week', () => {
@@ -243,9 +243,9 @@ describe('Sleep Repository', () => {
       {date: '2019/06/23', hoursSlept: 5.1}
     ];
 
-    sleepRepository.getHoursSleptPerWeek(5, '2019/06/23');
+    sleepRepository.getHoursOrQualityPerWeek('2019/06/23', 5, 'hoursSlept');
 
-    expect(sleepRepository.getHoursSleptPerWeek(5, '2019/06/23')).to.deep.equal(hoursByDate);
+    expect(sleepRepository.getHoursOrQualityPerWeek('2019/06/23', 5, 'hoursSlept')).to.deep.equal(hoursByDate);
   });
 
   it.skip('should determine sleep quality per day over a week', () => {
@@ -261,29 +261,24 @@ describe('Sleep Repository', () => {
       {date: '2019/06/22', sleepQuality: 1.3}
     ];
 
-    sleepRepository.getSleepQualityPerWeek(5, '2019/06/22');
+    sleepRepository.getHoursOrQualityPerWeek('2019/06/22', 5, 'sleepQuality');
 
-    expect(sleepRepository.getSleepQualityPerWeek(5, '2019/06/22')).to.deep.equal(qualityByDate);
+    expect(sleepRepository.getHoursOrQualityPerWeek('2019/06/22', 5, 'sleepQuality')).to.deep.equal(qualityByDate);
   });
 
-  it.skip('should calculate the average sleep quality across all users', () => {
+  it('should calculate the average sleep quality across all users', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
     sleepRepository.calculateAverageQualityForAll();
 
-    //3 - user 5
-    //2 - user 4
-    //3 - user 6
-    // average = 2.667
-
-    expect(sleepRepository.calculateAverageQualityForAll()).to.equal(2);
+    expect(sleepRepository.calculateAverageQualityForAll()).to.equal(2.9);
     //may be a little off after rounding the averages to nearest tenth
   });
 
-  it.skip('should find all users who average a sleep quality greater than 3 for a given week', () => {
+  it('should find all users who average a sleep quality greater than 3 for a given week', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.findUsersWithGoodQuality('2019/06/21');
+    sleepRepository.findUsersWithGoodQuality('2019/06/22');
 
     expect(sleepRepository.findUsersWithGoodQuality('2019/06/21')).to.deep.equal([5, 6]);
   });
