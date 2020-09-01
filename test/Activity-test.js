@@ -1,6 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+const userData = require('../data/users');
+const UserRepository = require('../src/UserRepository');
+const User = require('../src/User');
 const ActivityRepository = require('../src/ActivityRepository');
 
 const activityData = [
@@ -215,3 +218,117 @@ const activityData = [
     "flightsOfStairs": 3
   }
 ];
+
+describe('Activity Repository', () => {
+
+  it.skip('should be a function', () => {
+    expect(ActivityRepository).to.be.a('function');
+  });
+
+  it.skip('should be an instance of ActivityRepository', () => {
+    let activityRepository = new ActivityRepository();
+
+    expect(activityRepository).to.be.an.instanceOf(ActivityRepository);
+  });
+
+  it.skip('should take all users\'s activity data as an argument', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.activityData).to.deep.equal(activityData);
+  });
+
+  it.skip('should be able to find all of a user\'s data based on ID', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    activityRepository.getUserActivityData(8);
+
+    let userData = activityData.filter(dataPoint => {
+      return dataPoint.userID === 8;
+    });
+
+    expect(activityRepository.getUserActivityData(8)).to.deep.equal(userData);
+  });
+
+  it.skip('should return the miles a user has walked based on their number of steps on a specific day', () => {
+    let activityRepository = new ActivityRepository(activityData);
+    let userRepository = new UserRepository(userData);
+    let singleUserData = userRepository.getUserData(8);
+    let user = new User(singleUserData);
+
+    expect(activityRepository.getUserMiles(8, '2019/06/22')).to.equal(3.7);
+  });
+
+  it.skip('should determine how many minutes were they active for a given day', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.getActiveMinutes(8, '2019/06/22')).to.equal(116);
+  });
+
+  it.skip('should calculate how many minutes active they averaged for a given week', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.calculateAverageMinutesPerWeek(8, '2019/06/23')).to.equal(124);
+    //Math.floor this!!!
+  });
+
+  it.skip('should determine whether or not the user reached their step goal that day', () => {
+    let activityRepository = new ActivityRepository(activityData);
+    let userRepository = new UserRepository(userData);
+    let singleUserData = userRepository.getUserData(9);
+    let user = new User(singleUserData);
+
+    expect(activityRepository.verifyStepAchievement(9, "2019/06/23")).to.be.true;
+  });
+
+  it.skip('should determine all the days where they exceeded their step goal', () => {
+    let activityRepository = new ActivityRepository(activityData);
+    let userRepository = new UserRepository(userData);
+    let singleUserData = userRepository.getUserData(9);
+    let user = new User(singleUserData);
+    let achievementDays = [
+      '2019/06/15',
+      '2019/06/17',
+      '2019/06/18',
+      '2019/06/20',
+      '2019/06/21',
+      '2019/06/23',
+      '2019/06/24'
+    ];
+
+    expect(activityRepository.verifyStepAchievementDays(9)).to.deep.equal(achievementDays);
+  });
+
+  it.skip('should determine a user\'s all-time stair climbing record', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.findRecord(7, 'flightsOfStairs')).to.equal(46);
+  });
+
+  function calculateAverages(date, property) {
+    let validDates = activityData.filter(dataPoint => {
+      dataPoint.date === date;
+    })
+    let propertySum = validDates.reduce((sum, dataPoint)=> {
+      sum += dataPoint[property];
+      return sum;
+    },0)
+    return Math.floor(propertySum / validDates.length);
+  };
+
+  it.skip('should calculate the average stairs climbed, steps taken, and minutes active for a given day', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'numSteps')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
+    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'minutesActive')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
+    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'flightsOfStairs')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
+    //steps: 6452
+    //minutes: 87.33333
+    //stairs: 23
+  });
+
+  it.skip('should determine a user\'s all time record for minutes active', () => {
+    let activityRepository = new ActivityRepository(activityData);
+
+    expect(activityRepository.findRecord(7, 'minutesActive'))to.equal(286);
+  });
+});
