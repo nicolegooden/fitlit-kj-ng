@@ -318,7 +318,7 @@ describe('Activity Repository', () => {
     let userRepository = new UserRepository(userData);
     let singleUserData = userRepository.getUserData(9);
     let user = new User(singleUserData);
-    let activityRepository = new ActivityRepository(activityData);
+    let activityRepository = new ActivityRepository(activityData, userData);
 
     expect(activityRepository.verifyStepAchievement(9, "2019/06/23")).to.be.true;
   });
@@ -341,7 +341,7 @@ describe('Activity Repository', () => {
     expect(activityRepository.verifyStepAchievementDays(9)).to.deep.equal(achievementDays);
   });
 
-  it.skip('should determine a user\'s all-time stair climbing record', () => {
+  it('should determine a user\'s all-time stair climbing record', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.findRecord(7, 'flightsOfStairs')).to.equal(46);
@@ -349,27 +349,28 @@ describe('Activity Repository', () => {
 
   function calculateAverages(date, property) {
     let validDates = activityData.filter(dataPoint => {
-      dataPoint.date === date;
+      return dataPoint.date === date;
     })
     let propertySum = validDates.reduce((sum, dataPoint)=> {
       sum += dataPoint[property];
       return sum;
     },0)
+    console.log(propertySum/validDates.length);
     return Math.floor(propertySum / validDates.length);
   };
 
-  it.skip('should calculate the average stairs climbed, steps taken, and minutes active for a given day', () => {
+  it('should calculate the average stairs climbed, steps taken, and minutes active for a given day', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'numSteps')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
-    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'minutesActive')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
-    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'flightsOfStairs')).to.equal(calculateAverages('2019/06/15', 'numSteps'));
+    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'minutesActive')).to.equal(calculateAverages('2019/06/15', 'minutesActive'));
+    expect(activityRepository.calculateAverageDataByDate('2019/06/15', 'flightsOfStairs')).to.equal(calculateAverages('2019/06/15', 'flightsOfStairs'));
     //steps: 6452
     //minutes: 87.33333
     //stairs: 23
   });
 
-  it.skip('should determine a user\'s all time record for minutes active', () => {
+  it('should determine a user\'s all time record for minutes active', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.findRecord(7, 'minutesActive')).to.equal(286);
