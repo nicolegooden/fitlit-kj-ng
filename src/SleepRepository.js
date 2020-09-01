@@ -68,11 +68,6 @@ class SleepRepository {
   }
 
   findUsersWithGoodQuality(date) {
-    //dataset: this.sleepData (all users)
-    //grab dates from date + past week
-    //get full object of data in an array (length 7)
-    //filter (sleep quality > 3)
-    //return user IDs in an array
     let validDates = [];
     this.sleepData.forEach(dataPoint => {
       if (!(validDates.includes(dataPoint.date))) {
@@ -84,27 +79,60 @@ class SleepRepository {
     let filteredData = this.sleepData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })
-    let allUserID = [];
-    this.sleepData.forEach(dataPoint => {
-      if (!(allUserID.includes(dataPoint.userID))) {
-        allUserID.push(dataPoint.userID);
+    let userIDS = [];
+    filteredData.forEach(object => {
+      if (!(userIDS.includes(object.userID))) {
+        userIDS.push(object.userID);
       }
     })
-    let averages = allUserID.map(dataPoint => {
-      return this.calculateAverageHoursOrQuality(dataPoint, 'sleepQuality');
+    let sleepQualityByUser = filteredData.reduce((finalData, entry) => {
+      let key = entry.userID;
+      if (!finalData[key]) {
+        finalData[key] = [entry.sleepQuality];
+      } else {
+        finalData[key].push(entry.sleepQuality);
+      }
+      return finalData;
+    }, {})
+    userIDS.forEach(id => {
+      let individualData = sleepQualityByUser[id];
+      let total = individualData.reduce((sum, index) => {
+        sum += index;
+        return sum;
+      }, 0)
+      let average = total / individualData.length;
+      sleepQualityByUser[id] = parseFloat(average.toFixed(1));
     })
-    let averagesGreaterThanThree = averages.filter(average => {
-      return average > 3;
+    let bestSleepers = [];
+    userIDS.forEach(id => {
+      if (sleepQualityByUser[id] > 3) {
+        bestSleepers.push(id);
+      }
     })
-    console.log(averagesGreaterThanThree)
+    return bestSleepers;
+  }
+
+  findUserWithBestDataByDate(date, property) {
+    let userIDS = [];
+    this.sleepData.forEach(dataPoint => {
+      if (!(userIDS.includes(dataPoint.userID))) {
+        userIDS.push(dataPoint.userID);
+      }
+    })
+    const filteredSleepData = this.sleepData.filter( dataPoint => {
+      return dataPoint.date === date;
+    })
+    let sortedSleepData = filteredSleepData.sort((sleepDataA,sleepDataB) => {
+      return sleepDataB[property] - sleepDataA[property];
+    })
+    let winners = sortedSleepData.filter(dataPoint => {
+      return dataPoint[property] === sortedSleepData[0][property];
+    })
+    return winners.map(winner => {
+      return winner.userID;
+    })
   }
 }
-//we want the data to stay withing an object that lists the ID and sleep quality
-//then for each ID, add up the sleep quality value
-//then we will find the average of the user's sleep quality by diving by entries.length
-//the sleep quality property reassigned to be the average.
-//then return the ID of the object based on whether or not the sleep qiality value
-  //which is now the average, is over 3. 
 
 
 if (typeof module !== 'undefined') {
