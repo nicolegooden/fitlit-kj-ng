@@ -13,6 +13,10 @@ let hydrationDataToday = document.querySelector('.hydration-today-data');
 let hydrationDataLatestWeek = document.querySelector('.hydration-latest-week-data')
 let dateInput = document.querySelector('.date-input');
 let dateControl = document.querySelector('input[type="date"]');
+let sleepTodayData = document.querySelector('.sleep-today-data');
+let sleepLatestWeekData = document.querySelector('.sleep-latest-week-data');
+let sleepAchievementsData = document.querySelector('.sleep-achievements-data');
+let sleepDiyData = document.querySelector('.sleep-DIY-data');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
@@ -27,10 +31,13 @@ window.addEventListener('load', function actOnLoad() {
   compareStepGoals();
   getDate();
   showHydrationData();
+  showSleepData();
 });
 
 dateInput.addEventListener('change', showHydrationData);
-dateInput.addEventListener('change', resetHydrationData);
+dateInput.addEventListener('change', showSleepData);
+dateInput.addEventListener('change', resetWidgetData);
+
 
 ///// event handlers /////
 
@@ -84,7 +91,25 @@ function getDate() {
   return myDate;
 };
 
-function resetHydrationData() {
+function resetWidgetData() {
   hydrationDataLatestWeek.innerText = '';
   showHydrationData();
+  sleepLatestWeekData.innerText = '';
+  showSleepData();
 }
+
+function showSleepData() {
+  let sleepRepository = new SleepRepository(sleepData);
+  let userHoursSlept = sleepRepository.getHoursOrQualityByDate(userID, getDate(), 'hoursSlept');
+  let userSleepQuality = sleepRepository.getHoursOrQualityByDate(userID, getDate(), 'sleepQuality');
+  sleepTodayData.innerText = `Hours Slept: ${userHoursSlept} \n Sleep Quality: ${userSleepQuality}`;
+  let sleepLatestWeek = sleepRepository.findWeeklySleepData(getDate(), userID);
+  sleepLatestWeek.forEach(day => {
+    sleepLatestWeekData.innerText += `${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
+  });
+  let averageHours = sleepRepository.calculateAverageHoursOrQuality(userID, 'hoursSlept');
+  let averageQuality = sleepRepository.calculateAverageHoursOrQuality(userID, 'sleepQuality');
+  sleepAchievementsData.innerText = `Average Hours Slept Nightly: ${averageHours} \n Average Sleep Quality: ${averageQuality}`;
+  let bestSleepQuality = sleepRepository.findUserWithBestDataByDate(getDate(), 'sleepQuality');
+  sleepDiyData.innerText = `On ${getDate()}, user ${bestSleepQuality} had the best sleep quality.`
+};
