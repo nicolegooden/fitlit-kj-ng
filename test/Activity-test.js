@@ -1,10 +1,53 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const userData = require('../data/users');
 const UserRepository = require('../src/UserRepository');
 const User = require('../src/User');
 const ActivityRepository = require('../src/ActivityRepository');
+
+const userData = [
+  {
+    "id": 7,
+    "name": "Breanne Fay",
+    "address": "834 Retta Knoll, Stantonland MA 71627-4121",
+    "email": "Dashawn28@gmail.com",
+    "strideLength": 2.9,
+    "dailyStepGoal": 8000,
+    "friends": [
+      12,
+      27,
+      22,
+      30
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Laney Abshire",
+    "address": "86416 Koch Inlet, North Kaciefurt MA 80635",
+    "email": "Janice_Nitzsche2@yahoo.com",
+    "strideLength": 2.8,
+    "dailyStepGoal": 2000,
+    "friends": [
+      11,
+      41,
+      23,
+      49
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Myron Schmitt",
+    "address": "85251 Martina Fields, West Aletha MD 00163-5315",
+    "email": "Gerard_Langosh22@hotmail.com",
+    "strideLength": 3.8,
+    "dailyStepGoal": 6000,
+    "friends": [
+      16,
+      26,
+      17
+    ]
+  }
+];
 
 const activityData = [
   {
@@ -221,23 +264,23 @@ const activityData = [
 
 describe('Activity Repository', () => {
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(ActivityRepository).to.be.a('function');
   });
 
-  it.skip('should be an instance of ActivityRepository', () => {
+  it('should be an instance of ActivityRepository', () => {
     let activityRepository = new ActivityRepository();
 
     expect(activityRepository).to.be.an.instanceOf(ActivityRepository);
   });
 
-  it.skip('should take all users\'s activity data as an argument', () => {
+  it('should take all users\'s activity data as an argument', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.activityData).to.deep.equal(activityData);
   });
 
-  it.skip('should be able to find all of a user\'s data based on ID', () => {
+  it('should be able to find all of a user\'s data based on ID', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     activityRepository.getUserActivityData(8);
@@ -258,7 +301,7 @@ describe('Activity Repository', () => {
     expect(activityRepository.getUserMiles(8, '2019/06/22')).to.equal(3.7);
   });
 
-  it.skip('should determine how many minutes were they active for a given day', () => {
+  it('should determine how many minutes a user was active for a given day', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.getActiveMinutes(8, '2019/06/22')).to.equal(116);
@@ -271,11 +314,11 @@ describe('Activity Repository', () => {
     //Math.floor this!!!
   });
 
-  it.skip('should determine whether or not the user reached their step goal that day', () => {
-    let activityRepository = new ActivityRepository(activityData);
+  it('should determine whether or not the user reached their step goal that day', () => {
     let userRepository = new UserRepository(userData);
     let singleUserData = userRepository.getUserData(9);
     let user = new User(singleUserData);
+    let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.verifyStepAchievement(9, "2019/06/23")).to.be.true;
   });
@@ -329,6 +372,6 @@ describe('Activity Repository', () => {
   it.skip('should determine a user\'s all time record for minutes active', () => {
     let activityRepository = new ActivityRepository(activityData);
 
-    expect(activityRepository.findRecord(7, 'minutesActive'))to.equal(286);
+    expect(activityRepository.findRecord(7, 'minutesActive')).to.equal(286);
   });
 });
