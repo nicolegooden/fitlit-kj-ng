@@ -230,7 +230,7 @@ describe('Sleep Repository', () => {
     expect(sleepRepository.getHoursOrQualityByDate(5, '2019/06/16', 'sleepQuality')).to.equal(2.4);
   });
 
-  it.skip('should determine hours slept per day over a week', () => {
+  it('should determine hours slept per day over a week', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
     const hoursByDate = [
@@ -248,7 +248,7 @@ describe('Sleep Repository', () => {
     expect(sleepRepository.getHoursOrQualityPerWeek('2019/06/23', 5, 'hoursSlept')).to.deep.equal(hoursByDate);
   });
 
-  it.skip('should determine sleep quality per day over a week', () => {
+  it('should determine sleep quality per day over a week', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
     const qualityByDate = [
@@ -278,25 +278,22 @@ describe('Sleep Repository', () => {
   it('should find all users who average a sleep quality greater than 3 for a given week', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.findUsersWithGoodQuality('2019/06/22');
+    sleepRepository.findUsersWithGoodQuality('2019/06/21');
 
-    expect(sleepRepository.findUsersWithGoodQuality('2019/06/21')).to.deep.equal([5, 6]);
+    expect(sleepRepository.findUsersWithGoodQuality('2019/06/21')).to.deep.equal([5]);
   });
 
-  it.skip('should identify the user (or users if tied) who slept the most on a specific day', () => {
+  it('should identify the user (or users if tied) who slept the most on a specific day', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.identifyUserWithMostSleep('2019/06/19');
-    // need a conditional?
-
-    expect(sleepRepository.identifyUserWithMostSleep('2019/06/19')).to.equal(6);
+    expect(sleepRepository.findUserWithBestDataByDate('2019/06/19', 'hoursSlept')).to.deep.equal([6]);
   });
 
-  it.skip('should determine the day that the user got the best sleep quality over the course of a week', () => {
+  it('should determine the user with the best sleep quality on a specific day', () => {
     let sleepRepository = new SleepRepository(sleepData);
 
-    sleepRepository.findDateWithBestUserSleep(4, '2019/06/23');
+    sleepRepository.findUserWithBestDataByDate('2019/06/23', 'sleepQuality');
 
-    expect(sleepRepository.findDateWithBestUserSleep(4, '2019/06/23')).to.equal('2019/06/21');
+    expect(sleepRepository.findUserWithBestDataByDate('2019/06/23', 'sleepQuality')).to.deep.equal([6]);
   });
 });
