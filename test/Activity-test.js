@@ -336,6 +336,7 @@ describe('Activity Repository', () => {
     let activityRepository = new ActivityRepository(activityData, userData);
 
     expect(activityRepository.verifyStepAchievement(9, "2019/06/23")).to.be.true;
+    expect(activityRepository.verifyStepAchievement(7, "2019/06/19")).to.be.false;
   });
 
   it.skip('should determine all the days where they exceeded their step goal', () => {
