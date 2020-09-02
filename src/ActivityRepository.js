@@ -99,5 +99,3 @@ class ActivityRepository {
 if (typeof module !== 'undefined') {
   module.exports = ActivityRepository;
 }
-
-//add sad path test for verifyStepAchievement()
