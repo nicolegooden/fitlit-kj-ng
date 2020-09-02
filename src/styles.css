@@ -165,7 +165,7 @@ table, td, th {
 .activity-widget {
   background: #d4fcd4;
   border: 3px #077b09 solid;
-  height: 100%;
+  min-height: 45%;
 }
 
 .activity-widget div {
