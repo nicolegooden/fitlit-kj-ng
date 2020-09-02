@@ -1,3 +1,79 @@
+# FlashCards Starter Kit: Turing FE Module 2
+### Nicole Gooden
+### Kathryn Jackson
+
+## Abstract
+
+This project requires creating an activity tracker user interface using given data. This application presents the logged data on a dashboard, allowing users to view their activity, sleep, and hydration data. Users can also see their achievements and how their performance compares to that of their friends.
+
+Test driven development was used to drive the implementation of our code, ensuring that the data presented for each day is accurate.
+
+**The learning goals include:**
+* Follow the specification below to make a working application
+* Implement ES6 classes that communicate to each other as needed
+* Write modular, reusable code that follows SRP (Single Responsibility Principle)
+* Implement a robust testing suite using TDD
+* Use object and array prototype methods to perform data manipulation
+* Display information on the page while maintaining ability to test class properties and methods
+* Create a data dashboard that is easy to use and displays information in a clear way
+
+
+## Preview of Working Application
+
+![](https://media2.giphy.com/media/YqKtbYLe8KYWgOPf6B/giphy.gif)
+
+
+## Installation Instructions
+
+1. In your terminal, [choose the directory](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/command-line-101#:~:text=To%20change%20this%20current%20working,%24%20cd%20..) that you would like to store the game in.
+
+2. Clone down this repo.
+```
+git clone git@github.com:kathrynljackson/flashcards-starter.git
+```
+
+3. Once you have cloned the repo, change into the newly installed `flashcards-starter` directory and install the library dependencies. Run:
+```
+npm install
+```
+
+4. While in the `flashcards-starter` directory, start the game in your terminal by running:
+
+```
+node index.js
+```
+
+
+## Gameplay
+You should see something like this in your terminal:
+
+![Screen Shot 2020-08-20 at 3 34 07 PM](https://user-images.githubusercontent.com/65988644/90831556-39a7eb80-e301-11ea-9ec7-4e7c4fde1910.png)
+
+**Flashcards** is a game that tests your knowledge of the concepts covered in Turing FE Module 2. The game is started by running `node index.js`.
+
+1. Use the **up and down arrows on your keyboard** to select the answer to each question.
+
+2. Use the **return key on your keyboard** to choose the correct answer once your choice has been highlighted.
+
+3. After each answer, you will be notified as to whether or not you chose the correct answer.
+
+![Screen Shot 2020-08-20 at 3 55 36 PM](https://user-images.githubusercontent.com/65988644/90831579-49273480-e301-11ea-87c2-7f97d57cd786.png)
+
+![Screen Shot 2020-08-20 at 3 55 55 PM](https://user-images.githubusercontent.com/65988644/90831606-580de700-e301-11ea-8026-5000821b5dc7.png)
+
+4. Use the **return key on your keyboard** to move on to the next question.
+
+5. At the end of the round, you will be shown your overall score.
+
+![Screen Shot 2020-08-20 at 3 57 59 PM](https://user-images.githubusercontent.com/65988644/90831527-2c8afc80-e301-11ea-99e0-1711c9a016fc.png)
+
+6. Unhappy with your score? No worries! Use **CTRL + C** to exit the game. Run `node index.js` in your terminal to begin the game again.
+
+
+## Our GitHub Accounts
+@nicolegooden
+@kathrynljackson
+
 # FitLit Starter Kit
 
 The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
