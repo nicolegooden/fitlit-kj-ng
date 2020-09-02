@@ -78,7 +78,7 @@ height: 600px;
   display: flex-columns;
   background: #fdfce0;
   border: 3px #f2e814 solid;
-  height: 100%;
+  min-height: 45%;
 }
 
 .user-card-widget div {
