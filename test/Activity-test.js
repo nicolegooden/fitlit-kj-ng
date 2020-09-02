@@ -315,7 +315,7 @@ describe('Activity Repository', () => {
   it('should determine how many minutes a user was active for a given day', () => {
     let activityRepository = new ActivityRepository(activityData);
 
-    expect(activityRepository.getActiveMinutes(8, '2019/06/22')).to.equal(116);
+    expect(activityRepository.getDataByDate(8, '2019/06/22', 'minutesActive')).to.equal(116);
   });
 
   it('should calculate how many minutes active they averaged for a given week', () => {

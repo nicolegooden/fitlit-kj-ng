@@ -1,7 +1,7 @@
 ////// query selectors //////
 
 let greeting = document.querySelector('.greeting');
-let stepGoalComparison = document.querySelector('.you-vs-others-data');
+let stepGoalComparison = document.querySelector('.step-goal-comparison');
 let userCardID = document.querySelector('.user-card-id');
 let userCardName = document.querySelector('.user-card-name');
 let userCardAddress = document.querySelector('.user-card-address');
@@ -17,6 +17,10 @@ let sleepTodayData = document.querySelector('.sleep-today-data');
 let sleepLatestWeekData = document.querySelector('.sleep-latest-week-data');
 let sleepAchievementsData = document.querySelector('.sleep-achievements-data');
 let sleepDiyData = document.querySelector('.sleep-DIY-data');
+let activityTodayData = document.querySelector('.activity-today-data');
+let activityComparison = document.querySelector('.you-vs-others-data');
+let activityLatestWeekData = document.querySelector('.activity-latest-week-data');
+let activityAchievementsData = document.querySelector('.activity-achievements-data');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
@@ -32,12 +36,13 @@ window.addEventListener('load', function actOnLoad() {
   getDate();
   showHydrationData();
   showSleepData();
+  showActivityData();
 });
 
 dateInput.addEventListener('change', showHydrationData);
 dateInput.addEventListener('change', showSleepData);
+dateInput.addEventListener('change', showActivityData);
 dateInput.addEventListener('change', resetWidgetData);
-
 
 ///// event handlers /////
 
@@ -96,6 +101,8 @@ function resetWidgetData() {
   showHydrationData();
   sleepLatestWeekData.innerText = '';
   showSleepData();
+  activityLatestWeekData.innerText = '';
+  showActivityData();
 }
 
 function showSleepData() {
@@ -105,11 +112,29 @@ function showSleepData() {
   sleepTodayData.innerText = `Hours Slept: ${userHoursSlept} \n Sleep Quality: ${userSleepQuality}`;
   let sleepLatestWeek = sleepRepository.findWeeklySleepData(getDate(), userID);
   sleepLatestWeek.forEach(day => {
-    sleepLatestWeekData.innerText += `${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
+    sleepLatestWeekData.innerText += `\n${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
   });
   let averageHours = sleepRepository.calculateAverageHoursOrQuality(userID, 'hoursSlept');
   let averageQuality = sleepRepository.calculateAverageHoursOrQuality(userID, 'sleepQuality');
   sleepAchievementsData.innerText = `Average Hours Slept Nightly: ${averageHours} \n Average Sleep Quality: ${averageQuality}`;
   let bestSleepQuality = sleepRepository.findUserWithBestDataByDate(getDate(), 'sleepQuality');
   sleepDiyData.innerText = `On ${getDate()}, user ${bestSleepQuality} had the best sleep quality.`
+};
+
+function showActivityData() {
+  let activityRepository = new ActivityRepository(activityData, userData);
+  let activeMinutesToday = `${activityRepository.getDataByDate(userID, getDate(), 'minutesActive')}`;
+  let milesWalkedToday = `${activityRepository.getUserMiles(userID, getDate())}`;
+  let stepsToday = `${activityRepository.getDataByDate(userID, getDate(), 'numSteps')}`;
+  let flightsToday = `${activityRepository.getDataByDate(userID, getDate(), 'flightsOfStairs')}`;
+  let allSteps = `${activityRepository.calculateAverageDataByDate(getDate(), 'numSteps')}`;
+  let allMinutes = `${activityRepository.calculateAverageDataByDate(getDate(), 'minutesActive')}`;
+  let allFlights = `${activityRepository.calculateAverageDataByDate(getDate(), 'flightsOfStairs')}`;
+  activityTodayData.innerText = `Minutes Active: ${activeMinutesToday}\n Miles Walked: ${milesWalkedToday}\n Steps: ${stepsToday}\n`;
+  activityComparison.innerText = `\nYou Today:\n Minutes Active: ${activeMinutesToday}\n Steps: ${stepsToday}\n Flights Climbed: ${flightsToday}\n \n All Users Today:\n Minutes Active: ${allMinutes}\n Steps: ${allSteps}\n Flights Climbed: ${allFlights}`;
+  activityRepository.findWeeklyActivityData(getDate(), userID).forEach(dataPoint => {
+    activityLatestWeekData.innerText += `\n${dataPoint.date}: \n Steps: ${dataPoint.numSteps} \n Flights Climbed: ${dataPoint.flightsOfStairs} \n Minutes Active: ${dataPoint.minutesActive}\n`;
+  })
+  let mostMinutesActive = activityRepository.findRecord(userID, 'minutesActive');
+  activityAchievementsData.innerText = `Congrats! Your all-time record for active minutes for any day is: ${mostMinutesActive}`;
 };
