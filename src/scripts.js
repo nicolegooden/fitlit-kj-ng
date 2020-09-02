@@ -19,6 +19,7 @@ let sleepAchievementsData = document.querySelector('.sleep-achievements-data');
 let sleepDiyData = document.querySelector('.sleep-DIY-data');
 let activityTodayData = document.querySelector('.activity-today-data');
 let activityComparison = document.querySelector('.you-vs-others-data');
+let activityLatestWeekData = document.querySelector('.activity-latest-week-data');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
@@ -39,8 +40,8 @@ window.addEventListener('load', function actOnLoad() {
 
 dateInput.addEventListener('change', showHydrationData);
 dateInput.addEventListener('change', showSleepData);
-dateInput.addEventListener('change', resetWidgetData);
 dateInput.addEventListener('change', showActivityData);
+dateInput.addEventListener('change', resetWidgetData);
 
 ///// event handlers /////
 
@@ -99,6 +100,8 @@ function resetWidgetData() {
   showHydrationData();
   sleepLatestWeekData.innerText = '';
   showSleepData();
+  activityLatestWeekData.innerText = '';
+  showActivityData();
 }
 
 function showSleepData() {
@@ -108,7 +111,7 @@ function showSleepData() {
   sleepTodayData.innerText = `Hours Slept: ${userHoursSlept} \n Sleep Quality: ${userSleepQuality}`;
   let sleepLatestWeek = sleepRepository.findWeeklySleepData(getDate(), userID);
   sleepLatestWeek.forEach(day => {
-    sleepLatestWeekData.innerText += `${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
+    sleepLatestWeekData.innerText += `\n${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
   });
   let averageHours = sleepRepository.calculateAverageHoursOrQuality(userID, 'hoursSlept');
   let averageQuality = sleepRepository.calculateAverageHoursOrQuality(userID, 'sleepQuality');
@@ -128,4 +131,7 @@ function showActivityData() {
   let allFlights = `${activityRepository.calculateAverageDataByDate(getDate(), 'flightsOfStairs')}`;
   activityTodayData.innerText = `Minutes Active: ${activeMinutesToday}\n Miles Walked: ${milesWalkedToday}\n Steps: ${stepsToday}\n`;
   activityComparison.innerText = `\nYou Today:\n Minutes Active: ${activeMinutesToday}\n Steps: ${stepsToday}\n Flights Climbed: ${flightsToday}\n \n All Users Today:\n Minutes Active: ${allMinutes}\n Steps: ${allSteps}\n Flights Climbed: ${allFlights}`;
+  activityRepository.findWeeklyActivityData(getDate(), userID).forEach(dataPoint => {
+    activityLatestWeekData.innerText += `\n${dataPoint.date}: \n Steps: ${dataPoint.numSteps} \n Flights Climbed: ${dataPoint.flightsOfStairs} \n Minutes Active: ${dataPoint.minutesActive}\n`;
+  })
 };
