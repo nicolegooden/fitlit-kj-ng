@@ -1,7 +1,7 @@
 ////// query selectors //////
 
 let greeting = document.querySelector('.greeting');
-let stepGoalComparison = document.querySelector('.you-vs-others-data');
+let stepGoalComparison = document.querySelector('.step-goal-comparison');
 let userCardID = document.querySelector('.user-card-id');
 let userCardName = document.querySelector('.user-card-name');
 let userCardAddress = document.querySelector('.user-card-address');
@@ -17,6 +17,8 @@ let sleepTodayData = document.querySelector('.sleep-today-data');
 let sleepLatestWeekData = document.querySelector('.sleep-latest-week-data');
 let sleepAchievementsData = document.querySelector('.sleep-achievements-data');
 let sleepDiyData = document.querySelector('.sleep-DIY-data');
+let activityTodayData = document.querySelector('.activity-today-data');
+let activityComparison = document.querySelector('.you-vs-others-data');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
@@ -32,12 +34,13 @@ window.addEventListener('load', function actOnLoad() {
   getDate();
   showHydrationData();
   showSleepData();
+  showActivityData();
 });
 
 dateInput.addEventListener('change', showHydrationData);
 dateInput.addEventListener('change', showSleepData);
 dateInput.addEventListener('change', resetWidgetData);
-
+dateInput.addEventListener('change', showActivityData);
 
 ///// event handlers /////
 
@@ -112,4 +115,17 @@ function showSleepData() {
   sleepAchievementsData.innerText = `Average Hours Slept Nightly: ${averageHours} \n Average Sleep Quality: ${averageQuality}`;
   let bestSleepQuality = sleepRepository.findUserWithBestDataByDate(getDate(), 'sleepQuality');
   sleepDiyData.innerText = `On ${getDate()}, user ${bestSleepQuality} had the best sleep quality.`
+};
+
+function showActivityData() {
+  let activityRepository = new ActivityRepository(activityData, userData);
+  let activeMinutesToday = `${activityRepository.getDataByDate(userID, getDate(), 'minutesActive')}`;
+  let milesWalkedToday = `${activityRepository.getUserMiles(userID, getDate())}`;
+  let stepsToday = `${activityRepository.getDataByDate(userID, getDate(), 'numSteps')}`;
+  let flightsToday = `${activityRepository.getDataByDate(userID, getDate(), 'flightsOfStairs')}`;
+  let allSteps = `${activityRepository.calculateAverageDataByDate(getDate(), 'numSteps')}`;
+  let allMinutes = `${activityRepository.calculateAverageDataByDate(getDate(), 'minutesActive')}`;
+  let allFlights = `${activityRepository.calculateAverageDataByDate(getDate(), 'flightsOfStairs')}`;
+  activityTodayData.innerText = `Minutes Active: ${activeMinutesToday}\n Miles Walked: ${milesWalkedToday}\n Steps: ${stepsToday}\n`;
+  activityComparison.innerText = `\nYou Today:\n Minutes Active: ${activeMinutesToday}\n Steps: ${stepsToday}\n Flights Climbed: ${flightsToday}\n \n All Users Today:\n Minutes Active: ${allMinutes}\n Steps: ${allSteps}\n Flights Climbed: ${allFlights}`;
 };
