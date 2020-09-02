@@ -93,6 +93,11 @@ height: 600px;
   padding: 2%;
 }
 
+.user-card-widget section {
+  justify-content: space-between;
+  padding: 2%;
+}
+
 .uc-module {
   justify-content: space-between;
   background-color: #c1b80b;
