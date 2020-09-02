@@ -20,6 +20,7 @@ let sleepDiyData = document.querySelector('.sleep-DIY-data');
 let activityTodayData = document.querySelector('.activity-today-data');
 let activityComparison = document.querySelector('.you-vs-others-data');
 let activityLatestWeekData = document.querySelector('.activity-latest-week-data');
+let activityAchievementsData = document.querySelector('.activity-achievements-data');
 
 let userRepository = new UserRepository(userData);
 let user = createUser();
@@ -134,4 +135,6 @@ function showActivityData() {
   activityRepository.findWeeklyActivityData(getDate(), userID).forEach(dataPoint => {
     activityLatestWeekData.innerText += `\n${dataPoint.date}: \n Steps: ${dataPoint.numSteps} \n Flights Climbed: ${dataPoint.flightsOfStairs} \n Minutes Active: ${dataPoint.minutesActive}\n`;
   })
+  let mostMinutesActive = activityRepository.findRecord(userID, 'minutesActive');
+  activityAchievementsData.innerText = `Congrats! Your all-time record for active minutes for any day is: ${mostMinutesActive}`;
 };
