@@ -54,6 +54,8 @@ function welcomeUser() {
 
 function getRandomID() {
   let randomUserID = Math.floor(Math.random() * userRepository.allUserData.length);
+  randomUserID === 0 ? randomUserID = 38 : randomUserID = randomUserID;
+  console.log(randomUserID);
   let randomUser = userRepository.getUserData(randomUserID);
   return randomUser;
 };
