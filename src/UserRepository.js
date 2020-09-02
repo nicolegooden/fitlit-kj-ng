@@ -6,7 +6,7 @@ class UserRepository {
   getUserData(id) {
     const matchingUser = this.allUserData.find(data => {
       return data.id === id;
-    });
+    })
     return matchingUser;
   }
 
