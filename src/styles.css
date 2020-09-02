@@ -44,6 +44,13 @@
 /*   height: 100%; */
 }
 
+.widgets section {
+  /* padding: 1%; */
+  margin: 1%;
+  min-width: 30%;
+/*   height: 100%; */
+}
+
 .columns {
 height: 600px;
 }
