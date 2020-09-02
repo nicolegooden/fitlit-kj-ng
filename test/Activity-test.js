@@ -274,22 +274,38 @@ describe('Activity Repository', () => {
     expect(activityRepository).to.be.an.instanceOf(ActivityRepository);
   });
 
-  it('should take all users\'s activity data as an argument', () => {
+  it('should take all users\'s activity data as the first argument', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.activityData).to.deep.equal(activityData);
   });
 
-  it('should be able to find all of a user\'s data based on ID', () => {
+  it.skip('should take all user\'s general data as a second argument', () => {
+    let activityRepository = new ActivityRepository(activityData, userData);
+
+    expect(activityRepository.userData).to.deep.equal(userData);
+  })
+
+  it('should be able to find all of a user\'s activity data based on ID', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     activityRepository.getUserActivityData(8);
 
-    let userData = activityData.filter(dataPoint => {
+    let userActivityData = activityData.filter(dataPoint => {
       return dataPoint.userID === 8;
     });
 
-    expect(activityRepository.getUserActivityData(8)).to.deep.equal(userData);
+    expect(activityRepository.getUserActivityData(8)).to.deep.equal(userActivityData);
+  });
+
+  it('should be able to find all of a user\'s general data based on ID', () => {
+    let activityRepository = new ActivityRepository(activityData, userData);
+
+    let userGeneralData = userData.find(dataPoint => {
+      return dataPoint.id === 9;
+    });
+
+    expect(activityRepository.getGeneralUserData(9)).to.deep.equal(userGeneralData);
   });
 
   it.skip('should return the miles a user has walked based on their number of steps on a specific day', () => {
@@ -307,11 +323,10 @@ describe('Activity Repository', () => {
     expect(activityRepository.getActiveMinutes(8, '2019/06/22')).to.equal(116);
   });
 
-  it.skip('should calculate how many minutes active they averaged for a given week', () => {
+  it('should calculate how many minutes active they averaged for a given week', () => {
     let activityRepository = new ActivityRepository(activityData);
 
     expect(activityRepository.calculateAverageMinutesPerWeek(8, '2019/06/23')).to.equal(124);
-    //Math.floor this!!!
   });
 
   it('should determine whether or not the user reached their step goal that day', () => {
@@ -355,7 +370,6 @@ describe('Activity Repository', () => {
       sum += dataPoint[property];
       return sum;
     },0)
-    console.log(propertySum/validDates.length);
     return Math.floor(propertySum / validDates.length);
   };
 
