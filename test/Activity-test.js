@@ -433,9 +433,8 @@ describe('Activity Repository', () => {
         "minutesActive": 79,
         "flightsOfStairs": 8
       }
-    ]
+    ];
 
     expect(activityRepository.findWeeklyActivityData("2019/06/23", 7)).to.deep.equal(weeklyActivityData);
-
   });
 });
