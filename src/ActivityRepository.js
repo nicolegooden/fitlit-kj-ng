@@ -94,6 +94,19 @@ class ActivityRepository {
     })
     return verifiedDates;
   }
+
+  findWeeklyActivityData(date, id) {
+    let activityData = this.getUserActivityData(id);
+    let allDates = activityData.map(dataPoint => {
+      return dataPoint.date;
+    })
+    let dateIndex = allDates.indexOf(date);
+    let datesForWeek = allDates.slice(dateIndex - 6,dateIndex+1);
+    let filteredData = activityData.filter(dataPoint => {
+      return datesForWeek.includes(dataPoint.date);
+    })
+    return filteredData;
+  }
 }
 
 if (typeof module !== 'undefined') {
