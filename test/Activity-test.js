@@ -1,8 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const UserRepository = require('../src/UserRepository');
-const User = require('../src/User');
 const ActivityRepository = require('../src/ActivityRepository');
 
 const userData = [
@@ -310,9 +308,6 @@ describe('Activity Repository', () => {
 
   it('should return the miles a user has walked based on their number of steps on a specific day', () => {
     let activityRepository = new ActivityRepository(activityData, userData);
-    let userRepository = new UserRepository(userData);
-    let singleUserData = userRepository.getUserData(8);
-    let user = new User(singleUserData);
 
     expect(activityRepository.getUserMiles(8, '2019/06/22')).to.equal(3.7);
   });
@@ -330,9 +325,6 @@ describe('Activity Repository', () => {
   });
 
   it('should determine whether or not the user reached their step goal that day', () => {
-    let userRepository = new UserRepository(userData);
-    let singleUserData = userRepository.getUserData(9);
-    let user = new User(singleUserData);
     let activityRepository = new ActivityRepository(activityData, userData);
 
     expect(activityRepository.verifyStepAchievement(9, "2019/06/23")).to.be.true;
@@ -341,9 +333,7 @@ describe('Activity Repository', () => {
 
   it('should determine all the days where they exceeded their step goal', () => {
     let activityRepository = new ActivityRepository(activityData, userData);
-    let userRepository = new UserRepository(userData);
-    let singleUserData = userRepository.getUserData(9);
-    let user = new User(singleUserData);
+
     let achievementDays = [
       '2019/06/15',
       '2019/06/17',
