@@ -88,6 +88,7 @@ height: 600px;
 
 .title {
   text-align: center;
+  font-size: 25px;
 }
 
 .user-card-widget {
@@ -198,6 +199,10 @@ table, td, th {
 }
 
 .activity-widget div {
+  padding: 2%;
+}
+
+.activity-widget section {
   padding: 2%;
 }
 
