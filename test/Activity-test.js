@@ -280,7 +280,7 @@ describe('Activity Repository', () => {
     expect(activityRepository.activityData).to.deep.equal(activityData);
   });
 
-  it.skip('should take all user\'s general data as a second argument', () => {
+  it('should take all user\'s general data as a second argument', () => {
     let activityRepository = new ActivityRepository(activityData, userData);
 
     expect(activityRepository.userData).to.deep.equal(userData);
@@ -308,8 +308,8 @@ describe('Activity Repository', () => {
     expect(activityRepository.getGeneralUserData(9)).to.deep.equal(userGeneralData);
   });
 
-  it.skip('should return the miles a user has walked based on their number of steps on a specific day', () => {
-    let activityRepository = new ActivityRepository(activityData);
+  it('should return the miles a user has walked based on their number of steps on a specific day', () => {
+    let activityRepository = new ActivityRepository(activityData, userData);
     let userRepository = new UserRepository(userData);
     let singleUserData = userRepository.getUserData(8);
     let user = new User(singleUserData);
@@ -339,8 +339,8 @@ describe('Activity Repository', () => {
     expect(activityRepository.verifyStepAchievement(7, "2019/06/19")).to.be.false;
   });
 
-  it.skip('should determine all the days where they exceeded their step goal', () => {
-    let activityRepository = new ActivityRepository(activityData);
+  it('should determine all the days where they exceeded their step goal', () => {
+    let activityRepository = new ActivityRepository(activityData, userData);
     let userRepository = new UserRepository(userData);
     let singleUserData = userRepository.getUserData(9);
     let user = new User(singleUserData);
