@@ -18,12 +18,12 @@ class ActivityRepository {
     return generalUserData;
   }
 
-  getActiveMinutes(id, date) {
+  getDataByDate(id, date, property) {
     let singleUserData = this.getUserActivityData(id);
     let dataByDate = singleUserData.find(dataPoint => {
       return dataPoint.date === date;
     })
-    return dataByDate.minutesActive;
+    return dataByDate[property];
   }
 
   verifyStepAchievement(id, date) {
