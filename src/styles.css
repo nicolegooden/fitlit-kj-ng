@@ -7,6 +7,10 @@
   border-radius: 7px;
 }
 
+.body section {
+  border-radius: 7px;
+}
+
 .header {
   background: #fad0af;
   border: 3px #eb6d0e solid;
@@ -73,6 +77,11 @@ height: 600px;
 /*   align-items: stretch; */
 }
 
+.middle-column section {
+  justify-content: space-between;
+/*   align-items: stretch; */
+}
+
 .right-column {
   justify-content: space-between;
 }
@@ -129,6 +138,10 @@ height: 600px;
   padding: 2%;
 }
 
+.hydration-widget section {
+  padding: 2%;
+}
+
 .hydration-module {
   background: #82a9f5;
 }
@@ -157,6 +170,10 @@ table, td, th {
 }
 
 .sleep-widget div {
+  padding: 2%;
+}
+
+.sleep-widget section {
   padding: 2%;
 }
 
