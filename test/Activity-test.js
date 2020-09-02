@@ -380,4 +380,62 @@ describe('Activity Repository', () => {
 
     expect(activityRepository.findRecord(7, 'minutesActive')).to.equal(286);
   });
+
+  it('should show a user\'s steps taken, flights climbed, and minutes active for each day in a given week', () => {
+    let activityRepository = new ActivityRepository(activityData);
+    let weeklyActivityData = [
+      {
+        "userID": 7,
+        "date": "2019/06/17",
+        "numSteps": 2978,
+        "minutesActive": 152,
+        "flightsOfStairs": 18
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/18",
+        "numSteps": 10559,
+        "minutesActive": 200,
+        "flightsOfStairs": 32
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/19",
+        "numSteps": 5016,
+        "minutesActive": 183,
+        "flightsOfStairs": 41
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/20",
+        "numSteps": 13795,
+        "minutesActive": 286,
+        "flightsOfStairs": 31
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/21",
+        "numSteps": 13155,
+        "minutesActive": 179,
+        "flightsOfStairs": 46
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/22",
+        "numSteps": 13572,
+        "minutesActive": 280,
+        "flightsOfStairs": 32
+      },
+      {
+        "userID": 7,
+        "date": "2019/06/23",
+        "numSteps": 10190,
+        "minutesActive": 79,
+        "flightsOfStairs": 8
+      }
+    ]
+
+    expect(activityRepository.findWeeklyActivityData("2019/06/23", 7)).to.deep.equal(weeklyActivityData);
+
+  });
 });
