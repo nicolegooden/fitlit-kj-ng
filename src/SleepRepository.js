@@ -8,7 +8,7 @@ class SleepRepository {
       return dataPoint.userID === id;
     })
     return userData;
-  }
+  };
 
   calculateAverageHoursOrQuality(id, property) {
     let data = this.getUserSleepData(id);
@@ -21,7 +21,7 @@ class SleepRepository {
     })
     let average = totalProperty / propertyData.length;
     return parseFloat(average.toFixed(1));
-  }
+  };
 
   getHoursOrQualityByDate(id, date, property) {
     let userData = this.getUserSleepData(id);
@@ -29,7 +29,7 @@ class SleepRepository {
       return dataPoint.date === date;
     })
     return dataByDate[property];
-  }
+  };
 
   findWeeklySleepData(date, id) {
     let propertyData = this.getUserSleepData(id);
@@ -38,11 +38,14 @@ class SleepRepository {
     })
     let dateIndex = propertyDataDates.indexOf(date);
     let datesForWeek = propertyDataDates.slice(dateIndex - 6,dateIndex+1);
+    if (dateIndex <= 5) {
+      datesForWeek = propertyDataDates.slice(dateIndex - dateIndex, dateIndex + 1);
+    }
     let filteredData = propertyData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })
     return filteredData;
-  }
+  };
 
   getHoursOrQualityPerWeek(date, id, property) {
     let dataByWeek = this.findWeeklySleepData(date, id);
@@ -53,7 +56,7 @@ class SleepRepository {
       }
       return dataByDate;
     })
-  }
+  };
 
   calculateAverageQualityForAll() {
     let allSleepQuality = this.sleepData.map(dataPoint => {
@@ -65,7 +68,7 @@ class SleepRepository {
     })
     let average = totalQuality / allSleepQuality.length;
     return parseFloat(average.toFixed(1));
-  }
+  };
 
   findDatesForWeek(date) {
     let validDates = [];
@@ -80,7 +83,7 @@ class SleepRepository {
       return datesForWeek.includes(dataPoint.date);
     })
     return filteredData;
-  }
+  };
 
   getValidID(date) {
     let filteredData = this.findDatesForWeek(date);
@@ -91,7 +94,7 @@ class SleepRepository {
       }
     })
     return userIDS;
-  }
+  };
 
   organizeSleepQualityPerUser(date) {
     let filteredData = this.findDatesForWeek(date);
@@ -105,7 +108,7 @@ class SleepRepository {
       return finalData;
     }, {})
     return sleepQualityByUser;
-  }
+  };
 
   calculateAverageUserQuality(date, id) {
     let validIDList = this.getValidID(date);
@@ -120,7 +123,7 @@ class SleepRepository {
       sleepQualityByUser[id] = parseFloat(average.toFixed(1));
     })
     return sleepQualityByUser[id];
-  }
+  };
 
 
   findUsersWithGoodQuality(date) {
@@ -143,7 +146,7 @@ class SleepRepository {
       }
     })
     return bestSleepers;
-  }
+  };
 
   findUserWithBestDataByDate(date, property) {
     let userIDS = [];
@@ -164,7 +167,7 @@ class SleepRepository {
     return winners.map(winner => {
       return winner.userID;
     })
-  }
+  };
 }
 
 
