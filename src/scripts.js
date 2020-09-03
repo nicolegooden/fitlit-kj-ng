@@ -101,15 +101,6 @@ function getDate() {
   return myDate;
 };
 
-// function resetWidgetData(selector) {
-//   hydrationDataLatestWeek.innerText = '';
-//   showHydrationData();
-//   sleepLatestWeekData.innerText = '';
-//   showSleepData();
-//   activityLatestWeekData.innerText = '';
-//   showActivityData();
-// }
-
 function resetWidgetData(selector) {
   selector.innerText = '';
   if (selector === hydrationDataLatestWeek) {
@@ -119,7 +110,7 @@ function resetWidgetData(selector) {
   } else {
     showActivityData();
   }
-}
+};
 
 
 function showSleepData() {
