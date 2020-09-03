@@ -112,7 +112,7 @@ function showSleepData() {
   sleepTodayData.innerText = `Hours Slept: ${userHoursSlept} \n Sleep Quality: ${userSleepQuality}`;
   let sleepLatestWeek = sleepRepository.findWeeklySleepData(getDate(), userID);
   sleepLatestWeek.forEach(day => {
-    sleepLatestWeekData.innerText += `\n${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
+    sleepLatestWeekData.innerText += `\n ${day.date}: \n Hours Slept: ${day.hoursSlept} \n Quality: ${day.sleepQuality}\n`
   });
   let averageHours = sleepRepository.calculateAverageHoursOrQuality(userID, 'hoursSlept');
   let averageQuality = sleepRepository.calculateAverageHoursOrQuality(userID, 'sleepQuality');
