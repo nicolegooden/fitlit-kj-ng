@@ -47,7 +47,10 @@ class HydrationRepository {
       return dataPoint.date;
     })
     let dateIndex = ouncesDataDates.indexOf(date);
-    let datesForWeek = ouncesDataDates.slice(dateIndex - 6,dateIndex+1);
+    let datesForWeek = ouncesDataDates.slice(dateIndex - 6, dateIndex + 1);
+    if (dateIndex <= 5) {
+      datesForWeek = ouncesDataDates.slice(dateIndex - dateIndex, dateIndex + 1);
+    }
     let filteredData = ouncesData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })
