@@ -143,16 +143,6 @@ const hydrationData = [
 
 describe('Hydration Repository', () => {
 
-  // let hydration;
-  // let userID;
-  // let specificUserDate;
-  //
-  // beforeEach(() => {
-  //   userID = hydrationData[0].userID;
-  //   hydrationRepository= new Hydration(userID);
-  //   specificUserDate = hydrationData[0].date;
-  // });
-
   it('should be a function', () => {
     expect(HydrationRepository).to.be.a('function');
   });

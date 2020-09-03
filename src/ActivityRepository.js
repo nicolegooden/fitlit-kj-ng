@@ -102,6 +102,9 @@ class ActivityRepository {
     })
     let dateIndex = allDates.indexOf(date);
     let datesForWeek = allDates.slice(dateIndex - 6,dateIndex+1);
+    if (dateIndex <= 5) {
+      datesForWeek = allDates.slice(dateIndex - dateIndex, dateIndex + 1);
+    }
     let filteredData = activityData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })

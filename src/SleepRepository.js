@@ -38,6 +38,9 @@ class SleepRepository {
     })
     let dateIndex = propertyDataDates.indexOf(date);
     let datesForWeek = propertyDataDates.slice(dateIndex - 6,dateIndex+1);
+    if (dateIndex <= 5) {
+      datesForWeek = propertyDataDates.slice(dateIndex - dateIndex, dateIndex + 1);
+    }
     let filteredData = propertyData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })
@@ -67,7 +70,7 @@ class SleepRepository {
     return parseFloat(average.toFixed(1));
   }
 
-  findUsersWithGoodQuality(date) {
+  findDatesForWeek(date) {
     let validDates = [];
     this.sleepData.forEach(dataPoint => {
       if (!(validDates.includes(dataPoint.date))) {
@@ -79,12 +82,22 @@ class SleepRepository {
     let filteredData = this.sleepData.filter(dataPoint => {
       return datesForWeek.includes(dataPoint.date);
     })
+    return filteredData;
+  }
+
+  getValidID(date) {
+    let filteredData = this.findDatesForWeek(date);
     let userIDS = [];
     filteredData.forEach(object => {
       if (!(userIDS.includes(object.userID))) {
         userIDS.push(object.userID);
       }
     })
+    return userIDS;
+  }
+
+  organizeSleepQualityPerUser(date) {
+    let filteredData = this.findDatesForWeek(date);
     let sleepQualityByUser = filteredData.reduce((finalData, entry) => {
       let key = entry.userID;
       if (!finalData[key]) {
@@ -94,7 +107,30 @@ class SleepRepository {
       }
       return finalData;
     }, {})
-    userIDS.forEach(id => {
+    return sleepQualityByUser;
+  }
+
+  calculateAverageUserQuality(date, id) {
+    let validIDList = this.getValidID(date);
+    let sleepQualityByUser = this.organizeSleepQualityPerUser(date);
+    validIDList.forEach(id => {
+      let individualData = sleepQualityByUser[id];
+      let total = individualData.reduce((sum, index) => {
+        sum += index;
+        return sum;
+      }, 0)
+      let average = total / individualData.length;
+      sleepQualityByUser[id] = parseFloat(average.toFixed(1));
+    })
+    return sleepQualityByUser[id];
+  }
+
+
+  findUsersWithGoodQuality(date) {
+    let filteredData = this.findDatesForWeek(date);
+    let validIDList = this.getValidID(date);
+    let sleepQualityByUser = this.organizeSleepQualityPerUser(date);
+    validIDList.forEach(id => {
       let individualData = sleepQualityByUser[id];
       let total = individualData.reduce((sum, index) => {
         sum += index;
@@ -104,7 +140,7 @@ class SleepRepository {
       sleepQualityByUser[id] = parseFloat(average.toFixed(1));
     })
     let bestSleepers = [];
-    userIDS.forEach(id => {
+    validIDList.forEach(id => {
       if (sleepQualityByUser[id] > 3) {
         bestSleepers.push(id);
       }
