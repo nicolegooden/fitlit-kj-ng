@@ -36,14 +36,11 @@
 .widgets {
   display: flex;
   justify-content: space-evenly;
-/*   height: 70%; */
 }
 
 .widgets section {
-  /* padding: 1%; */
   margin: 1%;
   min-width: 30%;
-/*   height: 100%; */
 }
 
 .columns {
@@ -59,13 +56,10 @@ height: 600px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-/*   display: flex-rows; */
-/* align-items: stretch; */
 }
 
 .middle-column section {
   justify-content: space-between;
-/*   align-items: stretch; */
 }
 
 .right-column {
@@ -195,18 +189,18 @@ table, td, th {
   body {
     flex-direction: column;
     resize: both;
-    };
-
-    .header {
-      background: #fad0af;
-      border: 3px #eb6d0e solid;
-      margin: 1%;
-      padding: 1%;
-      border-radius: 7px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
     }
+
+  .header {
+    background: #fad0af;
+    border: 3px #eb6d0e solid;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+  }
 
   .greeting {
     font-size: 25px;
@@ -227,62 +221,57 @@ table, td, th {
   }
 
 
-    .widgets {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-    }
+  .widgets {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .widgets section {
-      flex-direction: column;
-      min-width: 90%;
-      max-width: 98%;
-      width: 100%;
-      height: 100%;
-    }
+  .widgets section {
+    flex-direction: column;
+    min-width: 90%;
+    max-width: 98%;
+    width: 100%;
+    height: 100%;
+  }
 
-    .user-card-widget section {
-      justify-content: space-between;
-      padding: 2%;
-      max-width: 93%;
-    }
+  .user-card-widget section {
+    justify-content: space-between;
+    padding: 2%;
+    max-width: 93%;
+  }
 
-    .hydration-widget section {
-      justify-content: space-between;
-      padding: 2%;
-      max-width: 93%;
-    }
+  .hydration-widget section {
+    justify-content: space-between;
+    padding: 2%;
+    max-width: 93%;
+  }
 
-    .sleep-widget section {
-      justify-content: space-between;
-      padding: 2%;
-      max-width: 93%;
-    }
+  .sleep-widget section {
+    justify-content: space-between;
+    padding: 2%;
+    max-width: 93%;
+  }
 
-    .activity-widget section {
-      justify-content: space-between;
-      padding: 2%;
-      max-width: 93%;
-    }
+  .activity-widget section {
+    justify-content: space-between;
+    padding: 2%;
+    max-width: 93%;
+  }
 
-    .middle-column section {
-      justify-content: space-between;
-    /*   align-items: stretch; */
-    }
+  .middle-column section {
+    justify-content: space-between;
+  }
 
-    .middle-column {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    /*   display: flex-rows; */
-    /* align-items: stretch; */
-    }
+  .middle-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-    .columns {
-      min-height: none;
-      max-height: 100%;
-      align-items: center;
-    }
-
-
+  .columns {
+    min-height: none;
+    max-height: 100%;
+    align-items: center;
+  }
 }
