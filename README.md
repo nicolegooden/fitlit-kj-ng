@@ -2,6 +2,7 @@
 ### Nicole Gooden
 ### Kathryn Jackson
 
+
 ## Abstract
 
 This project requires creating an activity tracker user interface using given data. This application presents the logged data on a dashboard, allowing users to view their activity, sleep, and hydration data. Users can also see their achievements and how their performance compares to that of their friends.
@@ -19,7 +20,10 @@ Test driven development was used to drive the implementation of our code, ensuri
 
 
 ## Preview of Working Application
-INSERT GIF HERE
+![general page display and calendar functionality](http://g.recordit.co/OIwoE4XK6X)
+
+![responsive design and show new user on load](http://g.recordit.co/KGJKUHTsEM)
+
 
 ## Installation
 1. In your terminal, [choose the directory](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/command-line-101#:~:text=To%20change%20this%20current%20working,%24%20cd%20..) that you would like to store this repository in.
@@ -37,6 +41,7 @@ npm install
 ```
 open src/index.html
 ```
+
 
 ## Usage and Accessibility
 After starting this project, we attended a class session on accessibility. We chose to do further research on ways that we could change our project to make it more accessible within our given timeframe. [One source](http://dyslexiahelp.umich.edu/sites/default/files/good_fonts_for_dyslexia_study.pdf) that we found explained that font style and line height make the page more readable for people with learning disabilities such as dyslexia. For this reason, we changed our font to _Verdana_ and increased our line height by 50%. Another change we made was to change our `div` elements to `section` elements. By using semantic HTML, our application is now more accessible to people using screen-reading software.
@@ -70,6 +75,7 @@ The **activity widget**  displays:
 * The user's step count for today
 * How many miles the user walked today
 * The user's step count, how many flights of stairs were climbed, and active minutes for each day over the course of the last week
+
 
 ## Our GitHub Accounts
 [Nicole Gooden](https://github.com/nicolegooden)
