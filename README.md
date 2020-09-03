@@ -76,6 +76,12 @@ The **activity widget**  displays:
 * How many miles the user walked today
 * The user's step count, how many flights of stairs were climbed, and active minutes for each day over the course of the last week
 
+## Next Steps
+* Display our weekly data with graphs
+* Use Lighthouse in dev tools to check accessibility
+* Display names of friends rather than just their ID
+* Add a widget to compare user's data to their friends' data
+* Refactor some of our longer methods in `scripts.js`
 
 ## Our GitHub Accounts
 [Nicole Gooden](https://github.com/nicolegooden)
