@@ -233,6 +233,7 @@ table, td, th {
     max-width: 98%;
     width: 100%;
     height: 100%;
+    text-align: center;
   }
 
   .user-card-widget section {
