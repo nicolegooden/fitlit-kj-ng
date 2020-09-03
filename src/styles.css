@@ -1,8 +1,7 @@
 .body {
   font-family: 'Verdana', sans-serif;
-  font-weight: normal;
-  font-style: normal;
   background: #2b2b2b;
+  line-height: 1.5
 }
 
 .body section {
@@ -97,13 +96,13 @@ height: 600px;
 
 .uc-title {
   margin: 0%;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .uc-data {
   border-top: 1px solid #f2e814;
   margin: 0%;
-  font-size: 15px;
+  font-size: 18px;
   flex-grow: 1;
   flex-wrap: wrap;
 }
@@ -127,12 +126,12 @@ height: 600px;
 
 .hydration-title {
   margin: 0%;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .hydration-data {
   border-top: 1px solid #155fec;
-  font-size: 15px;
+  font-size: 18px;
   margin: 0%;
 }
 
@@ -158,11 +157,11 @@ table, td, th {
 
 .sleep-title {
   margin: 0%;
-  font-size: 18px;
+  font-size: 22px;
 }
 .sleep-data {
   border-top: 1px solid #dc2205;
-  font-size: 15px;
+  font-size: 18px;
   margin: 0%;
 }
 
@@ -182,11 +181,11 @@ table, td, th {
 
 .activity-title {
   margin: 0%;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .activity-data {
   border-top: 1px #077b09 solid;
-  font-size: 15px;
+  font-size: 18px;
   margin: 0%;
 }
