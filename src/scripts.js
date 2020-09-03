@@ -39,10 +39,14 @@ window.addEventListener('load', function actOnLoad() {
   showActivityData();
 });
 
-dateInput.addEventListener('change', showHydrationData);
-dateInput.addEventListener('change', showSleepData);
-dateInput.addEventListener('change', showActivityData);
-dateInput.addEventListener('change', resetWidgetData);
+dateInput.addEventListener('change', function actOnDateChange() {
+  showHydrationData();
+  showSleepData();
+  showActivityData();
+  resetWidgetData(hydrationDataLatestWeek);
+  resetWidgetData(sleepLatestWeekData);
+  resetWidgetData(activityLatestWeekData);
+});
 
 ///// event handlers /////
 
@@ -54,6 +58,7 @@ function welcomeUser() {
 
 function getRandomID() {
   let randomUserID = Math.floor(Math.random() * userRepository.allUserData.length);
+  randomUserID === 0 ? randomUserID = 38 : randomUserID = randomUserID;
   let randomUser = userRepository.getUserData(randomUserID);
   return randomUser;
 };
@@ -96,14 +101,17 @@ function getDate() {
   return myDate;
 };
 
-function resetWidgetData() {
-  hydrationDataLatestWeek.innerText = '';
-  showHydrationData();
-  sleepLatestWeekData.innerText = '';
-  showSleepData();
-  activityLatestWeekData.innerText = '';
-  showActivityData();
-}
+function resetWidgetData(selector) {
+  selector.innerText = '';
+  if (selector === hydrationDataLatestWeek) {
+    showHydrationData();
+  } else if (selector === sleepLatestWeekData) {
+    showSleepData();
+  } else {
+    showActivityData();
+  }
+};
+
 
 function showSleepData() {
   let sleepRepository = new SleepRepository(sleepData);
