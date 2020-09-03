@@ -20,9 +20,8 @@ Test driven development was used to drive the implementation of our code, ensuri
 
 
 ## Preview of Working Application
-![general page display and calendar functionality](http://g.recordit.co/OIwoE4XK6X)
-
-![responsive design and show new user on load](http://g.recordit.co/KGJKUHTsEM)
+![](https://media.giphy.com/media/S9iRAKiz7vDaOY2oAF/giphy.gif)
+![](https://media.giphy.com/media/humYba0LTMiBNQbCrl/giphy.gif)
 
 
 ## Installation
