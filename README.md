@@ -1,4 +1,4 @@
-# FlashCards Starter Kit: Turing FE Module 2
+# FitLit: Turing FE Module 2
 ### Nicole Gooden
 ### Kathryn Jackson
 
@@ -19,11 +19,13 @@ Test driven development was used to drive the implementation of our code, ensuri
 
 
 ## Preview of Working Application
-
 INSERT GIF HERE
 
 ## Visit our application
-[FitLit](DEPLOYED SITE)
+[FitLit](https://nicolegooden.github.io/fitlit-kj-ng/)
+
+## Accessibility
+After starting this project, we attended a class session on accessibility. We chose to do further research on ways that we could change our project to make it more accessible within our given timeframe. [One source](http://dyslexiahelp.umich.edu/sites/default/files/good_fonts_for_dyslexia_study.pdf) that we found explained that font style and line height make the page more readable for people with learning disabilities such as dyslexia. For this reason, we changed our font to _Verdana_ and increased our line height by 50%.
 
 
 ## Usage
